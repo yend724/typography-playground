@@ -1,11 +1,10 @@
 import { TypographyProvider } from "./shared/hooks/useTypographyState";
+import { PlaygroundView } from "./views/PlaygroundView";
 
 export const App = () => {
   return (
     <TypographyProvider>
-      <div className="min-h-screen bg-gray-50">
-        <h1 className="text-2xl font-bold p-4">Typography Playground</h1>
-      </div>
+      <PlaygroundView />
     </TypographyProvider>
   );
 };
