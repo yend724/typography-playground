@@ -35,13 +35,16 @@ const defaultState = buildDefaultState();
 
 const typographyReducer = (
   state: TypographyState,
-  action: TypographyAction
+  action: TypographyAction,
 ): TypographyState => {
   switch (action.type) {
     case "SET_PROPERTY":
       return { ...state, [action.cssProperty]: action.value };
     case "RESET_PROPERTY":
-      return { ...state, [action.cssProperty]: defaultState[action.cssProperty] };
+      return {
+        ...state,
+        [action.cssProperty]: defaultState[action.cssProperty],
+      };
     case "RESET_ALL":
       return { ...defaultState };
     case "LOAD_PRESET":
@@ -70,7 +73,7 @@ export const TypographyProvider = ({
       loadPreset: (presetState) =>
         dispatch({ type: "LOAD_PRESET", state: presetState }),
     }),
-    [state, appliedStyles]
+    [state, appliedStyles],
   );
 
   return (

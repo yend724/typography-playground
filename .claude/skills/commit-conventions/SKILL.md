@@ -1,5 +1,5 @@
 ---
-name: commit
+name: commit-conventions
 description: >
   Git コミットメッセージの規約。Conventional Commits 形式、日本語。
   Apply when creating git commits, reviewing commit messages,

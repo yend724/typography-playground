@@ -53,7 +53,7 @@ src/views/      → ページレベルコンポーネント（PlaygroundView）
 | `testing` | Vitest + Testing Library 規約（振る舞いテスト、モック最小限） |
 | `tdd` | TDD ワークフロー（Red → Green → Refactor） |
 | `validation` | Zod + neverthrow による入力バリデーション |
-| `commit` | Conventional Commits 形式（日本語） |
+| `commit-conventions` | Conventional Commits 形式（日本語） |
 | `review` | コミット前のセルフレビュー |
 
 ## 実装計画
