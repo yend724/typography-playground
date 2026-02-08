@@ -13,6 +13,13 @@ dist-ssr
 *.local
 .pnpm-approve-builds.json
 
+# Claude Code
+# グローバル gitignore で .claude が除外されているため、skills のみ許可
+!.claude/
+.claude/*
+!.claude/skills/
+!CLAUDE.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
