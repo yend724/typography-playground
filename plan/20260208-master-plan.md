@@ -1,0 +1,293 @@
+# Typography Playground マスタープラン
+
+作成日: 2026-02-08
+
+## Context
+
+CSSのTypographyプロパティは数が多く役割も複雑で把握が難しい。ブラウザ上でインタラクティブにプロパティを操作し、リアルタイムプレビューで効果を確認できるPlaygroundを構築する。
+
+設計の詳細は以下を参照:
+- [アーキテクチャ](../docs/architecture.md)
+- [コーディング規約](../docs/coding-guidelines.md)
+
+> **TDD方針**: 全フェーズを通じて Red → Green → Refactor で開発する。各Stepではテストを先に書き、テストが通る最小限の実装を書く。
+
+---
+
+## フェーズ一覧
+
+| Phase | 内容 | 成果物 |
+|---|---|---|
+| **1** | プロジェクト初期化 | Vite + React + Tailwind v4 + Vitest 動作確認 |
+| **2** | 型定義とBasic Textデータ | `shared/types/`, `shared/data/properties/basicText.ts` |
+| **3** | 状態管理とコアフック | `shared/hooks/`, `shared/utils/css.ts` |
+| **4** | レイアウトシェル | `views/PlaygroundView.tsx` + Header |
+| **5** | 入力コンポーネント群 | `features/controls/` (Basic Text完動) |
+| **6** | プレビュー | `features/preview/` 全コンポーネント |
+| **7** | 残りのカテゴリ + 専用入力 | 全4カテゴリ定義 + MultiValueInput, AxisSliderGroup |
+| **8** | Google Fonts連携 | FontFamilyInput, useGoogleFonts |
+| **9** | 仕上げ | localStorage, プリセット, レスポンシブ, a11y |
+
+---
+
+## Phase 1: プロジェクト初期化
+
+- [ ] **Step 1-1**: Vite + React + TypeScript テンプレートで初期化
+  - `npm create vite@latest -- --template react-ts`
+- [ ] **Step 1-2**: Tailwind CSS v4 導入
+  - `npm install tailwindcss @tailwindcss/vite`
+  - `vite.config.ts` に Tailwind プラグイン追加
+  - `src/index.css` を `@import "tailwindcss";` に置換
+- [ ] **Step 1-3**: Vitest + Testing Library 導入
+  - `npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom`
+  - `vitest.config.ts` 作成 (environment: jsdom, setupFiles)
+  - テストセットアップファイル作成 (`src/test/setup.ts`)
+  - `package.json` に `"test": "vitest"` スクリプト追加
+- [ ] **Step 1-4**: 不要ファイル削除
+  - `App.css`, デフォルトの `assets/` を削除
+  - `App.tsx` を最小構成に書き換え
+- [ ] **Step 1-5**: ディレクトリ構造作成
+  - `src/shared/types/`
+  - `src/shared/data/properties/`
+  - `src/shared/hooks/`
+  - `src/shared/utils/`
+  - `src/shared/ui/`
+  - `src/features/controls/inputs/`
+  - `src/features/preview/`
+  - `src/views/`
+- [ ] **Step 1-6**: 動作確認
+  - `npm run dev` でブラウザ表示を確認
+  - `npx vitest run` でテスト実行基盤が動作することを確認
+
+---
+
+## Phase 2: 型定義とBasic Textデータ
+
+> Phase 5 時点で動作確認可能な Basic Text カテゴリのみ定義する。
+> 残りのカテゴリ (Decoration, Advanced, OpenType) は対応コンポーネントと同タイミングの Phase 7 で定義する。
+
+- [ ] **Step 2-1**: 型定義の作成
+  - テスト: 型の構造検証 (`typography.test.ts`)
+  - `shared/types/typography.ts`
+  - ControlType, SliderConfig, SelectConfig, MultiValueConfig, AxisConfig
+  - PropertyDefinition, PropertyCategory
+- [ ] **Step 2-2**: Basic Text プロパティ定義 (パターン確立)
+  - テスト: 必須フィールドの存在、cssProperty の重複なし (`basicText.test.ts`)
+  - `shared/data/properties/basicText.ts`
+  - 9プロパティ: font-size, font-weight, font-style, line-height, letter-spacing, word-spacing, text-align, text-indent, color
+  - ※ font-family は Phase 8 (Google Fonts連携) で FontFamilyInput と同時に追加
+- [ ] **Step 2-3**: カテゴリ組み立て
+  - テスト: カテゴリ配列の整合性 (`categories.test.ts`)
+  - `shared/data/categories.ts`
+  - まず Basic Text のみ。Phase 7, 8 で順次追加
+
+---
+
+## Phase 3: 状態管理とコアフック
+
+- [ ] **Step 3-1**: CSSユーティリティ関数
+  - テスト先行: `css.test.ts` — cssPropertyToReact, buildAppliedStyles の入出力検証
+  - `shared/utils/css.ts`
+  - `cssPropertyToReact()`: kebab-case → camelCase 変換
+  - `buildAppliedStyles()`: state → React.CSSProperties 変換
+- [ ] **Step 3-2**: Typography状態管理フック
+  - テスト先行: `useTypographyState.test.tsx` — SET_PROPERTY, RESET_PROPERTY, RESET_ALL, appliedStyles 算出
+  - `shared/hooks/useTypographyState.ts`
+  - Reducer: SET_PROPERTY / RESET_PROPERTY / RESET_ALL / LOAD_PRESET
+  - Context Provider + useTypography() カスタムフック
+  - `appliedStyles` を useMemo で算出
+- [ ] **Step 3-3**: CSS出力フック
+  - テスト先行: `useCSSOutput.test.tsx` — デフォルト値のみの場合、変更ありの場合
+  - `shared/hooks/useCSSOutput.ts`
+  - デフォルト値と異なるプロパティのみCSS文字列を生成
+- [ ] **Step 3-4**: App.tsx にProvider接続
+  - TypographyProvider で App 全体をラップ
+
+---
+
+## Phase 4: レイアウトシェル
+
+- [ ] **Step 4-1**: PlaygroundView の作成
+  - `views/PlaygroundView.tsx`
+  - Header (タイトル + リセットボタン)
+  - 左右分割レイアウト (40% / 60%)
+- [ ] **Step 4-2**: ControlPanel コンテナ
+  - `features/controls/ControlPanel.tsx`
+  - スクロール可能な左パネル (プレースホルダー)
+- [ ] **Step 4-3**: PreviewPanel コンテナ
+  - `features/preview/PreviewPanel.tsx`
+  - sticky 右パネル (プレースホルダー)
+- [ ] **Step 4-4**: App.tsx で PlaygroundView を描画
+  - ブラウザでレイアウト確認
+
+---
+
+## Phase 5: 入力コンポーネント群
+
+- [ ] **Step 5-1**: SliderInput
+  - テスト先行: `SliderInput.test.tsx` — スライダー操作 → onChange コールバック
+  - `features/controls/inputs/SliderInput.tsx`
+  - range スライダー + number 入力 + 単位表示
+- [ ] **Step 5-2**: SelectInput
+  - テスト先行: `SelectInput.test.tsx` — 選択変更 → onChange コールバック
+  - `features/controls/inputs/SelectInput.tsx`
+  - ドロップダウン選択
+- [ ] **Step 5-3**: ColorInput
+  - テスト先行: `ColorInput.test.tsx` — 色変更 → onChange コールバック
+  - `features/controls/inputs/ColorInput.tsx`
+  - `<input type="color">` + HEX表示
+- [ ] **Step 5-4**: TextInput
+  - テスト先行: `TextInput.test.tsx` — テキスト入力 → onChange コールバック
+  - `features/controls/inputs/TextInput.tsx`
+  - 自由テキスト入力
+- [ ] **Step 5-5**: PropertyLabel
+  - `features/controls/PropertyLabel.tsx`
+  - ラベル + 説明ツールチップ + リセットボタン
+- [ ] **Step 5-6**: PropertyControl (ディスパッチャー)
+  - テスト先行: `PropertyControl.test.tsx` — controlType ごとに正しい入力コンポーネントを描画
+  - `features/controls/PropertyControl.tsx`
+  - controlType に応じて Step 5-1〜5-4 のコンポーネントを切り替え
+- [ ] **Step 5-7**: CategorySection
+  - テスト先行: `CategorySection.test.tsx` — 折りたたみ開閉の振る舞い
+  - `features/controls/CategorySection.tsx`
+  - 折りたたみ開閉 + 変更数バッジ
+- [ ] **Step 5-8**: ControlPanel に接続
+  - `features/controls/ControlPanel.tsx`
+  - categories データから CategorySection を描画
+- [ ] **Step 5-9**: 動作確認
+  - `npx vitest run` で全テスト通過を確認
+  - Basic Text カテゴリの9プロパティ (font-family除く) が操作可能なことをブラウザで確認
+
+---
+
+## Phase 6: プレビュー
+
+- [ ] **Step 6-1**: 汎用UIパーツ
+  - `shared/ui/CopyButton.tsx` — コピー + フィードバック表示
+  - `shared/ui/Tooltip.tsx` — ホバーツールチップ
+- [ ] **Step 6-2**: PreviewText
+  - テスト先行: `PreviewText.test.tsx` — appliedStyles がインラインスタイルとして適用されること
+  - `features/preview/PreviewText.tsx`
+  - デフォルトプレビューテキスト (英語 + 日本語)
+- [ ] **Step 6-3**: PreviewControls
+  - `features/preview/PreviewControls.tsx`
+  - プレビューテキスト編集 (textarea)
+  - 背景色切替 (白 / ダーク)
+- [ ] **Step 6-4**: CSSOutput
+  - テスト先行: `CSSOutput.test.tsx` — 変更済みプロパティのCSS表示が正しいこと
+  - `features/preview/CSSOutput.tsx`
+  - useCSSOutput から生成CSSを表示
+  - CopyButton でクリップボードコピー
+- [ ] **Step 6-5**: PreviewPanel に組み立て
+  - `features/preview/PreviewPanel.tsx`
+  - PreviewControls + PreviewText + CSSOutput を配置
+- [ ] **Step 6-6**: 動作確認
+  - `npx vitest run` で全テスト通過を確認
+  - コントロール操作 → プレビュー即時反映をブラウザで確認
+  - CSS出力が正しいことを確認
+  - コピー機能が動作することを確認
+
+---
+
+## Phase 7: 残りのカテゴリ + 専用入力
+
+> Phase 2 で Basic Text のみ定義していた。ここで残り3カテゴリの定義と、専用入力コンポーネントを同時に作成する。
+
+- [ ] **Step 7-1**: Decoration & Transform プロパティ定義
+  - テスト先行: `decorationTransform.test.ts` — 定義の整合性
+  - `shared/data/properties/decorationTransform.ts` — 10プロパティ
+- [ ] **Step 7-2**: MultiValueInput
+  - テスト先行: `MultiValueInput.test.tsx` — サブ値変更 → 合成値の onChange
+  - `features/controls/inputs/MultiValueInput.tsx`
+  - 複数サブ値 (offsetX, offsetY, blur, color) を個別操作
+  - テンプレートで最終値を合成
+- [ ] **Step 7-3**: Advanced プロパティ定義
+  - テスト先行: `advanced.test.ts` — 定義の整合性
+  - `shared/data/properties/advanced.ts` — 12プロパティ
+- [ ] **Step 7-4**: OpenType Features プロパティ定義
+  - テスト先行: `opentype.test.ts` — 定義の整合性
+  - `shared/data/properties/opentype.ts` — 8プロパティ
+- [ ] **Step 7-5**: AxisSliderGroup
+  - テスト先行: `AxisSliderGroup.test.tsx` — 軸スライダー操作 → 合成値の onChange
+  - `features/controls/inputs/AxisSliderGroup.tsx`
+  - Variable Font 軸ごとのスライダー群
+  - `"wght" 400, "wdth" 100` 形式で値を合成
+- [ ] **Step 7-6**: PropertyControl にディスパッチ追加
+  - `multi-value` → MultiValueInput
+  - `axis-slider-group` → AxisSliderGroup
+- [ ] **Step 7-7**: カテゴリ組み立て更新
+  - `shared/data/categories.ts` に 3カテゴリ追加
+- [ ] **Step 7-8**: 動作確認
+  - `npx vitest run` で全テスト通過を確認
+  - 全4カテゴリ (39プロパティ, font-family除く) が操作・プレビュー反映されることを確認
+  - text-shadow の複合操作を確認
+  - font-variation-settings の軸操作を確認
+
+---
+
+## Phase 8: Google Fonts連携
+
+- [ ] **Step 8-1**: フォントデータ作成
+  - テスト先行: `fonts.test.ts` — データ構造の整合性、重複なし
+  - `shared/data/fonts.ts`
+  - 厳選80フォント (Sans-serif / Serif / Monospace / Display / Handwriting)
+  - 日本語フォント含む (Noto Sans JP, Noto Serif JP, M PLUS Rounded 1c 等)
+- [ ] **Step 8-2**: フォントユーティリティ
+  - テスト先行: `fonts.test.ts` (utils) — URL構築の正確性
+  - `shared/utils/fonts.ts`
+  - Google Fonts CSS URL 構築ヘルパー
+- [ ] **Step 8-3**: useGoogleFonts フック
+  - テスト先行: `useGoogleFonts.test.tsx` — 検索フィルタ、loadFont 呼び出し
+  - `shared/hooks/useGoogleFonts.ts`
+  - 検索 / カテゴリフィルタ
+  - 動的 `<link>` タグ挿入 + CSS Font Loading API で読み込み待機
+- [ ] **Step 8-4**: FontFamilyInput
+  - テスト先行: `FontFamilyInput.test.tsx` — フォント選択 → onChange
+  - `features/controls/inputs/FontFamilyInput.tsx`
+  - 検索可能ドロップダウン
+  - カテゴリフィルタータブ
+  - ドロップダウン内でフォントプレビュー表示
+- [ ] **Step 8-5**: font-family プロパティ定義追加
+  - `shared/data/properties/basicText.ts` に font-family を追加
+  - PropertyControl に `font-family` → FontFamilyInput のディスパッチ追加
+- [ ] **Step 8-6**: 動作確認
+  - `npx vitest run` で全テスト通過を確認
+  - フォント検索 → 選択 → プレビュー反映をブラウザで確認
+  - 日本語フォントの読み込み・表示を確認
+  - 全40プロパティが完全動作することを確認
+
+---
+
+## Phase 9: 仕上げ
+
+- [ ] **Step 9-1**: localStorage 永続化
+  - テスト先行: `useLocalStorage.test.ts` — 保存・復元の検証
+  - `shared/hooks/useLocalStorage.ts`
+  - useTypographyState と連携し状態を自動保存・復元
+- [ ] **Step 9-2**: プリセット機能
+  - `shared/data/presets.ts`
+  - Elegant Serif / Modern Sans / Monospace Code / Japanese Vertical 等
+  - Header にプリセット選択ドロップダウン追加
+- [ ] **Step 9-3**: レスポンシブ対応
+  - 狭い画面 (< 768px) では上下積みレイアウトに切替
+  - コントロールパネルの幅調整
+- [ ] **Step 9-4**: アクセシビリティ
+  - タブ順序の整理
+  - スライダーのキーボード操作
+  - aria-label / aria-expanded の付与
+- [ ] **Step 9-5**: 最終動作確認
+  - `npx vitest run` で全テスト通過を確認
+  - 全フェーズの検証項目を通しでブラウザ確認
+  - ページリロード後の状態復元を確認
+  - レスポンシブ表示を確認
+
+---
+
+## 検証方法
+
+1. `npx vitest run` で全テスト通過を確認
+2. `npm run dev` でローカルサーバー起動
+3. 各カテゴリのプロパティ操作 → プレビューにリアルタイム反映を確認
+4. CSSOutput にプロパティが正しく出力されることを確認
+5. Google Fonts フォント切替が動作することを確認
+6. ブラウザDevToolsでプレビュー要素のスタイルを検査
