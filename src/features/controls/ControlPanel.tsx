@@ -1,7 +1,12 @@
+import { categories } from "../../shared/data/categories";
+import { CategorySection } from "./CategorySection";
+
 export const ControlPanel = () => {
   return (
-    <div className="p-4">
-      <p className="text-gray-500">Controls will be here</p>
+    <div>
+      {categories.map((category) => (
+        <CategorySection key={category.id} category={category} />
+      ))}
     </div>
   );
 };
