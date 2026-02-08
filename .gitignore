@@ -18,6 +18,9 @@ dist-ssr
 !.claude/
 .claude/*
 !.claude/skills/
+!.claude/rules/
+!.claude/commands/
+!.claude/agents/
 !CLAUDE.md
 
 # Editor directories and files

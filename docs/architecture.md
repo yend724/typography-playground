@@ -136,6 +136,29 @@ src/
 │   └── PlaygroundView.tsx             # メインページ (レイアウト + features組み立て)
 ```
 
+### import ルール
+
+上位レイヤーから下位レイヤーへの一方向のみ許可。同レイヤー間（feature 間）の import は禁止。
+
+```
+  views/
+    │  import 可
+    ▼
+  features/
+    │  import 可        ※ features/controls/ ←✕→ features/preview/
+    ▼                      （feature 間の相互 import 禁止）
+  shared/
+    ├── hooks/
+    ├── utils/
+    ├── data/
+    ├── types/
+    └── ui/
+```
+
+- `views/` → `features/`、`shared/` を import できる
+- `features/` → `shared/` を import できる。他の feature は import できない
+- `shared/` → 外部パッケージのみ。`features/` や `views/` は import できない
+
 ---
 
 ## カテゴリ構成（全40プロパティ）

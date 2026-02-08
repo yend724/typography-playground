@@ -1,80 +1,77 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+このファイルは Claude Code (claude.ai/code) がこのリポジトリで作業する際のガイドラインを提供する。
 
-## Project Overview
+## プロジェクト概要
 
-Typography Playground — a browser-based interactive tool for exploring CSS typography properties with real-time preview. Built with Vite + React (TypeScript) + Tailwind CSS v4.
+Typography Playground — CSS タイポグラフィプロパティをリアルタイムプレビューで対話的に探索するブラウザベースツール。Vite + React (TypeScript) + Tailwind CSS v4 で構築。
 
-## Package Manager
+## パッケージマネージャー
 
 pnpm を使用する。npm / yarn は使わない。
 
-## Commands
+## コマンド
 
 ```bash
-pnpm dev             # Start dev server
-pnpm build           # Production build
-pnpm preview         # Preview production build
-pnpm vitest          # Run all tests (watch mode)
-pnpm vitest run      # Run tests once
-pnpm vitest <path>   # Run a single test file
+pnpm dev             # 開発サーバー起動
+pnpm build           # プロダクションビルド
+pnpm preview         # プロダクションビルドのプレビュー
+pnpm vitest          # 全テスト実行（watchモード）
+pnpm vitest run      # テスト一回実行
+pnpm vitest <path>   # 単一テストファイル実行
 ```
 
-## Architecture
+## アーキテクチャ
 
-See `docs/architecture.md` for full details. Key points:
+詳細は `docs/architecture.md` を参照。要点：
 
-**Data-driven design**: Each CSS property is a `PropertyDefinition` object in `shared/data/properties/`. `PropertyControl` dispatches to the correct input component based on `controlType` (slider, select, color, text, font-family, multi-value, axis-slider-group).
+**データ駆動設計**: 各 CSS プロパティは `shared/data/properties/` 内の `PropertyDefinition` オブジェクト。`PropertyControl` が `controlType`（slider, select, color, text, font-family, multi-value, axis-slider-group）に応じて適切な入力コンポーネントにディスパッチする。
 
-**Data flow**: `useTypographyState` (useReducer + Context) holds all property values as `Record<string, string | undefined>`. Controls write via `setProperty()`, preview reads `appliedStyles` (computed `React.CSSProperties`), and `useCSSOutput` generates the CSS string.
+**データフロー**: `useTypographyState`（useReducer + Context）が全プロパティ値を `Record<string, string | undefined>` として保持。コントロールは `setProperty()` で書き込み、プレビューは `appliedStyles`（算出された `React.CSSProperties`）を読み取り、`useCSSOutput` が CSS 文字列を生成する。
 
-**Styling separation**: Tailwind CSS for the app UI; inline styles (`React.CSSProperties`) for the preview area. Never mix the two.
+**スタイリングの分離**: アプリ UI には Tailwind CSS、プレビュー領域には inline styles（`React.CSSProperties`）を使用。両者を混在させない。
 
-## Directory Structure
+## ディレクトリ構成
 
 ```
-src/shared/     → types, data, hooks, utils, reusable UI (Tooltip, CopyButton)
-src/features/   → domain modules (controls/, preview/)
-src/views/      → page-level components (PlaygroundView)
+src/shared/     → 型、データ、hooks、utils、再利用可能 UI（Tooltip, CopyButton）
+src/features/   → ドメインモジュール（controls/, preview/）
+src/views/      → ページレベルコンポーネント（PlaygroundView）
 ```
 
-**Import rule**: `views/ → features/ → shared/`. No cross-feature imports. No circular dependencies.
+**import ルール**: `docs/architecture.md` の「import ルール」セクションを参照。
 
-## TypeScript Conventions
+## コーディング規約
 
-See `.claude/skills/typescript-conventions/` for full reference. Key rules:
+詳細は各 skill を参照。コーディング規約は `docs/coding-guidelines.md` にもまとめてある。
 
-- Arrow functions only (no `function` declarations, no `class`)
-- `type` with `Readonly<{}>` for data shapes (not `interface`)
-- Union types over enums: `type Status = "active" | "inactive"`
-- Named exports only (no `export default`)
-- `strict: true`, no `any` — use `unknown` and narrow
-- Immutable by default: `readonly` arrays, `Readonly<>` for exported types
-- 3+ params → parameter object
-- `handle` prefix for event handlers, `on` prefix for callback props
+| skill | 内容 |
+|-------|------|
+| `typescript-conventions` | 関数型 TS 規約（アロー関数、`type` + `Readonly`、ユニオン型、`any` 禁止） |
+| `react` | React / Next.js 規約（アロー関数コンポーネント、Props 分割代入、不変 state） |
+| `styling` | Tailwind CSS v4（アプリ UI）と inline styles（プレビュー領域）の使い分け |
+| `testing` | Vitest + Testing Library 規約（振る舞いテスト、モック最小限） |
+| `tdd` | TDD ワークフロー（Red → Green → Refactor） |
+| `validation` | Zod + neverthrow による入力バリデーション |
+| `commit` | Conventional Commits 形式（日本語） |
+| `review` | コミット前のセルフレビュー |
 
-## React Conventions
+## 実装計画
 
-See `.claude/skills/react/` for full reference. Key rules:
+詳細は `plan/20260208-master-plan.md` の 9 フェーズ段階的計画を参照。
 
-- Arrow function components (no `React.FC`, no class components)
-- Props: `type Props = Readonly<{...}>` with destructuring in parameter
-- State updates always immutable: `setItems(prev => [...prev, newItem])`
+**Phase 単位の確認ルール**: 実装は必ず Phase 単位で進める。各 Phase の全 Step を完了したら、次の Phase に進む前にユーザーに確認を取ること。確認なしに次の Phase へ進んではならない。
 
-## Testing
+## ナレッジの蓄積
 
-See `docs/coding-guidelines.md` and `.claude/skills/testing/` for full reference. Key rules:
+同じやり取りの繰り返しや、汎用的に適用すべきルール・パターンを発見した場合は、都度適切な場所に記録すること。再度指示を受けるのを待たず、自律的に判断して書き込む。記録すべきか判断に迷った場合はユーザーに確認する。
 
-- TDD: write failing test first → minimal implementation → refactor
-- Test files sit alongside source: `css.ts` / `css.test.ts`
-- Vitest + @testing-library/react + jsdom
-- Test behavior, not implementation; use `getByRole`/`getByLabelText`
-- Minimize mocks; prefer dependency injection
-- Test names in Japanese are acceptable
-
-## Implementation Plan
-
-See `plan/20260208-master-plan.md` for the 9-phase step-by-step plan.
-
-**Phase単位の確認ルール**: 実装は必ずPhase単位で進める。各Phaseの全Stepを完了したら、次のPhaseに進む前にユーザーに確認を取ること。確認なしに次のPhaseへ進んではならない。
+| 記録先 | 用途 |
+|--------|------|
+| `CLAUDE.md` | プロジェクト全体に関わるルール・方針の追加・更新 |
+| `.claude/skills/` | コーディング規約・ワークフローなど再利用可能なスキル定義 |
+| `.claude/rules/` | 自動適用されるルール（ファイルパターン別トリガーなど） |
+| `docs/` | アーキテクチャ・設計判断・ガイドラインの詳細ドキュメント |
+| `.claude/commands/` | カスタムスラッシュコマンド（定型ワークフローの自動化） |
+| `.claude/agents/` | カスタムサブエージェント（専門タスク特化） |
+| `plan/` | Phase ごとの実装計画 |
