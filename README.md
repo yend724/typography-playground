@@ -1,73 +1,54 @@
-# React + TypeScript + Vite
+# Typography Playground
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CSS タイポグラフィプロパティをリアルタイムプレビューで対話的に探索できるブラウザベースツール。
 
-Currently, two official plugins are available:
+**Demo**: https://yend724.github.io/typography-playground/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 機能
 
-## React Compiler
+- **38 種類の CSS プロパティ** を CSS 仕様ベースの 4 カテゴリに分類してインタラクティブに操作
+  - CSS Fonts (font-size, font-weight, font-variation-settings など 11 種)
+  - CSS Text (color, line-height, text-align, text-transform など 17 種)
+  - CSS Text Decoration (text-decoration-line, text-shadow など 7 種)
+  - CSS Writing Modes (writing-mode, direction など 3 種)
+- **リアルタイムプレビュー** でスタイル変更を即座に確認
+- **CSS 出力** で変更したプロパティのコードをワンクリックコピー
+- **Google Fonts 連携** で 80 種類のフォント (日本語フォント含む) を選択可能
+- **レスポンシブ対応** でモバイルでもタブ切り替えで操作可能
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 技術スタック
 
-## Expanding the ESLint configuration
+- [Vite](https://vite.dev/) + [React](https://react.dev/) (TypeScript)
+- [Tailwind CSS](https://tailwindcss.com/) v4
+- [Vitest](https://vitest.dev/) + [Testing Library](https://testing-library.com/)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## セットアップ
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+# 依存のインストール
+pnpm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# 開発サーバー起動
+pnpm dev
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# テスト実行
+pnpm vitest run
+
+# プロダクションビルド
+pnpm build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ディレクトリ構成
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+src/
+├── shared/         # 型、データ、hooks、utils、汎用 UI
+├── features/
+│   ├── controls/   # プロパティ操作コントロール
+│   └── preview/    # プレビュー・CSS 出力
+└── views/          # ページレベルコンポーネント
+```
+
+## ライセンス
+
+MIT
