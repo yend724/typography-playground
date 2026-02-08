@@ -23,11 +23,10 @@ export const PreviewPanel = () => {
 
       <div
         data-testid="preview-area"
-        className={`flex-1 p-6 rounded border ${
-          backgroundMode === "dark"
-            ? "bg-gray-900 border-gray-700"
-            : "bg-white border-gray-200"
-        }`}
+        className="flex-1 p-6 rounded border border-gray-200"
+        style={{
+          backgroundColor: backgroundMode === "dark" ? "#000000" : "#ffffff",
+        }}
       >
         <PreviewText text={previewText} appliedStyles={appliedStyles} />
       </div>

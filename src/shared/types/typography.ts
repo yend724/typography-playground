@@ -68,7 +68,7 @@ export type PropertyDefinition =
 export type PropertyCategory = Readonly<{
   id: string;
   label: string;
-  description: string;
+  specUrl: string;
+  mdnUrl: string;
   properties: readonly PropertyDefinition[];
-  defaultExpanded: boolean;
 }>;

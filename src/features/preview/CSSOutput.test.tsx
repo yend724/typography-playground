@@ -9,10 +9,7 @@ describe("CSSOutput", () => {
     });
   });
 
-  const cssText = `.my-text {
-  font-size: 24px;
-  color: red;
-}`;
+  const cssText = `font-size: 24px;\ncolor: red;`;
 
   it("CSS テキストが表示される", () => {
     render(<CSSOutput cssText={cssText} />);

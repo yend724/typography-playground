@@ -1,0 +1,223 @@
+import type { PropertyDefinition } from "../../types/typography";
+
+export const textProperties: readonly PropertyDefinition[] = [
+  {
+    cssProperty: "color",
+    label: "Color",
+    description: "テキストの色を設定します",
+    defaultValue: "#000000",
+    controlType: "color",
+  },
+  {
+    cssProperty: "line-height",
+    label: "Line Height",
+    description: "行の高さを設定します",
+    defaultValue: "1.5",
+    controlType: "slider",
+    config: { min: 0.5, max: 4, step: 0.1, unit: "" },
+  },
+  {
+    cssProperty: "letter-spacing",
+    label: "Letter Spacing",
+    description: "文字間のスペースを設定します",
+    defaultValue: "0px",
+    controlType: "slider",
+    config: { min: -5, max: 20, step: 0.5, unit: "px" },
+  },
+  {
+    cssProperty: "word-spacing",
+    label: "Word Spacing",
+    description: "単語間のスペースを設定します",
+    defaultValue: "0px",
+    controlType: "slider",
+    config: { min: -5, max: 30, step: 0.5, unit: "px" },
+  },
+  {
+    cssProperty: "text-align",
+    label: "Text Align",
+    description: "テキストの水平方向の配置を設定します",
+    defaultValue: "start",
+    controlType: "select",
+    config: {
+      options: [
+        { value: "start", label: "Start" },
+        { value: "end", label: "End" },
+        { value: "left", label: "Left" },
+        { value: "center", label: "Center" },
+        { value: "right", label: "Right" },
+        { value: "justify", label: "Justify" },
+      ],
+    },
+  },
+  {
+    cssProperty: "text-indent",
+    label: "Text Indent",
+    description: "テキストの最初の行のインデントを設定します",
+    defaultValue: "0px",
+    controlType: "slider",
+    config: { min: -50, max: 100, step: 1, unit: "px" },
+  },
+  {
+    cssProperty: "text-transform",
+    label: "Text Transform",
+    description: "テキストの大文字・小文字変換を設定します",
+    defaultValue: "none",
+    controlType: "select",
+    config: {
+      options: [
+        { value: "none", label: "None" },
+        { value: "capitalize", label: "Capitalize" },
+        { value: "uppercase", label: "Uppercase" },
+        { value: "lowercase", label: "Lowercase" },
+        { value: "full-width", label: "Full Width" },
+      ],
+    },
+  },
+  {
+    cssProperty: "white-space",
+    label: "White Space",
+    description: "空白文字の処理方法を設定します",
+    defaultValue: "normal",
+    controlType: "select",
+    config: {
+      options: [
+        { value: "normal", label: "Normal" },
+        { value: "nowrap", label: "Nowrap" },
+        { value: "pre", label: "Pre" },
+        { value: "pre-wrap", label: "Pre Wrap" },
+        { value: "pre-line", label: "Pre Line" },
+        { value: "break-spaces", label: "Break Spaces" },
+      ],
+    },
+  },
+  {
+    cssProperty: "word-break",
+    label: "Word Break",
+    description: "単語の改行ルールを設定します",
+    defaultValue: "normal",
+    controlType: "select",
+    config: {
+      options: [
+        { value: "normal", label: "Normal" },
+        { value: "break-all", label: "Break All" },
+        { value: "keep-all", label: "Keep All" },
+        { value: "break-word", label: "Break Word" },
+      ],
+    },
+  },
+  {
+    cssProperty: "overflow-wrap",
+    label: "Overflow Wrap",
+    description: "長い単語の折り返し方法を設定します",
+    defaultValue: "normal",
+    controlType: "select",
+    config: {
+      options: [
+        { value: "normal", label: "Normal" },
+        { value: "break-word", label: "Break Word" },
+        { value: "anywhere", label: "Anywhere" },
+      ],
+    },
+  },
+  {
+    cssProperty: "line-break",
+    label: "Line Break",
+    description: "行の改行ルールを設定します",
+    defaultValue: "auto",
+    controlType: "select",
+    config: {
+      options: [
+        { value: "auto", label: "Auto" },
+        { value: "loose", label: "Loose" },
+        { value: "normal", label: "Normal" },
+        { value: "strict", label: "Strict" },
+        { value: "anywhere", label: "Anywhere" },
+      ],
+    },
+  },
+  {
+    cssProperty: "hyphens",
+    label: "Hyphens",
+    description: "ハイフネーションの方法を設定します",
+    defaultValue: "none",
+    controlType: "select",
+    config: {
+      options: [
+        { value: "none", label: "None" },
+        { value: "manual", label: "Manual" },
+        { value: "auto", label: "Auto" },
+      ],
+    },
+  },
+  {
+    cssProperty: "tab-size",
+    label: "Tab Size",
+    description: "タブ文字の幅を設定します",
+    defaultValue: "8",
+    controlType: "slider",
+    config: { min: 0, max: 16, step: 1, unit: "" },
+  },
+  {
+    cssProperty: "text-wrap",
+    label: "Text Wrap",
+    description: "テキストの折り返し方法を設定します",
+    defaultValue: "wrap",
+    controlType: "select",
+    config: {
+      options: [
+        { value: "wrap", label: "Wrap" },
+        { value: "nowrap", label: "Nowrap" },
+        { value: "balance", label: "Balance" },
+        { value: "pretty", label: "Pretty" },
+        { value: "stable", label: "Stable" },
+      ],
+    },
+  },
+  {
+    cssProperty: "text-overflow",
+    label: "Text Overflow",
+    description: "あふれたテキストの表示方法を設定します",
+    defaultValue: "clip",
+    controlType: "select",
+    config: {
+      options: [
+        { value: "clip", label: "Clip" },
+        { value: "ellipsis", label: "Ellipsis" },
+      ],
+    },
+  },
+  {
+    cssProperty: "vertical-align",
+    label: "Vertical Align",
+    description: "インライン要素の垂直方向の配置を設定します",
+    defaultValue: "baseline",
+    controlType: "select",
+    config: {
+      options: [
+        { value: "baseline", label: "Baseline" },
+        { value: "sub", label: "Sub" },
+        { value: "super", label: "Super" },
+        { value: "text-top", label: "Text Top" },
+        { value: "text-bottom", label: "Text Bottom" },
+        { value: "middle", label: "Middle" },
+        { value: "top", label: "Top" },
+        { value: "bottom", label: "Bottom" },
+      ],
+    },
+  },
+  {
+    cssProperty: "text-rendering",
+    label: "Text Rendering",
+    description: "テキストのレンダリング最適化方法を設定します",
+    defaultValue: "auto",
+    controlType: "select",
+    config: {
+      options: [
+        { value: "auto", label: "Auto" },
+        { value: "optimizeSpeed", label: "Optimize Speed" },
+        { value: "optimizeLegibility", label: "Optimize Legibility" },
+        { value: "geometricPrecision", label: "Geometric Precision" },
+      ],
+    },
+  },
+];

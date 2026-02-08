@@ -16,9 +16,9 @@ export const useCSSOutput = (): string => {
     const lines: string[] = [];
     for (const [cssProperty, value] of Object.entries(state)) {
       if (value !== undefined && value !== defaultValues.get(cssProperty)) {
-        lines.push(`  ${cssProperty}: ${value};`);
+        lines.push(`${cssProperty}: ${value};`);
       }
     }
-    return `.my-text {\n${lines.join("\n")}${lines.length > 0 ? "\n" : ""}}`;
+    return lines.join("\n");
   }, [state]);
 };

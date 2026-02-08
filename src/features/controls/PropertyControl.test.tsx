@@ -68,4 +68,59 @@ describe("PropertyControl", () => {
     expect(screen.getByRole("textbox")).toBeInTheDocument();
     expect(screen.getByText("Column Rule")).toBeInTheDocument();
   });
+
+  it("multi-value タイプでサブフィールドが表示される", () => {
+    const definition: PropertyDefinition = {
+      cssProperty: "text-shadow",
+      label: "Text Shadow",
+      description: "テキストの影",
+      defaultValue: "0px 0px 0px #000000",
+      controlType: "multi-value",
+      config: {
+        subFields: [
+          {
+            name: "offsetX",
+            label: "Offset X",
+            type: "slider",
+            sliderConfig: { min: -20, max: 20, step: 1, unit: "px" },
+          },
+          {
+            name: "color",
+            label: "Color",
+            type: "color",
+          },
+        ],
+        template: "{offsetX} {color}",
+      },
+    };
+    render(<PropertyControl definition={definition} />, { wrapper });
+    expect(screen.getByText("Offset X")).toBeInTheDocument();
+    expect(screen.getByText("Text Shadow")).toBeInTheDocument();
+  });
+
+  it("axis-slider-group タイプで軸スライダーが表示される", () => {
+    const definition: PropertyDefinition = {
+      cssProperty: "font-variation-settings",
+      label: "Font Variation Settings",
+      description: "Variable Font 軸",
+      defaultValue: '"wght" 400',
+      controlType: "axis-slider-group",
+      config: {
+        axes: [
+          {
+            tag: "wght",
+            name: "Weight",
+            min: 100,
+            max: 900,
+            step: 1,
+            defaultValue: 400,
+          },
+        ],
+      },
+    };
+    render(<PropertyControl definition={definition} />, { wrapper });
+    expect(screen.getByText("Weight")).toBeInTheDocument();
+    expect(screen.getByRole("slider")).toBeInTheDocument();
+    expect(screen.getByText("Font Variation Settings")).toBeInTheDocument();
+  });
 });

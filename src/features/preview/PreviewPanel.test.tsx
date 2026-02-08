@@ -34,10 +34,10 @@ describe("PreviewPanel", () => {
     expect(previewArea).toHaveTextContent("Custom text");
   });
 
-  it("Dark モードで背景が暗くなる", () => {
+  it("Dark モードで背景が黒になる", () => {
     render(<PreviewPanel />, { wrapper });
     fireEvent.click(screen.getByRole("button", { name: "Dark" }));
     const previewArea = screen.getByTestId("preview-area");
-    expect(previewArea).toHaveClass("bg-gray-900");
+    expect(previewArea).toHaveStyle({ backgroundColor: "#000000" });
   });
 });

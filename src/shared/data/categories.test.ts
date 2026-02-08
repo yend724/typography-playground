@@ -2,8 +2,8 @@ import { describe, it, expect } from "vitest";
 import { categories } from "./categories";
 
 describe("categories", () => {
-  it("少なくとも 1 カテゴリが存在する", () => {
-    expect(categories.length).toBeGreaterThanOrEqual(1);
+  it("4 カテゴリが存在する", () => {
+    expect(categories).toHaveLength(4);
   });
 
   it("カテゴリ id に重複がない", () => {
@@ -22,5 +22,12 @@ describe("categories", () => {
       c.properties.map((p) => p.cssProperty)
     );
     expect(new Set(allProps).size).toBe(allProps.length);
+  });
+
+  it("各カテゴリに specUrl と mdnUrl がある", () => {
+    for (const category of categories) {
+      expect(category.specUrl).toMatch(/^https:\/\//);
+      expect(category.mdnUrl).toMatch(/^https:\/\/developer\.mozilla\.org/);
+    }
   });
 });

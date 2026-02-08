@@ -97,13 +97,13 @@ describe("Typography 型定義", () => {
 
   it("PropertyCategory が正しく構成できる", () => {
     const category: PropertyCategory = {
-      id: "basic-text",
-      label: "Basic Text",
-      description: "基本テキストプロパティ",
+      id: "css-fonts",
+      label: "CSS Fonts",
+      specUrl: "https://www.w3.org/TR/css-fonts-4/",
+      mdnUrl: "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_fonts",
       properties: [],
-      defaultExpanded: true,
     };
-    expect(category.id).toBe("basic-text");
-    expect(category.defaultExpanded).toBe(true);
+    expect(category.id).toBe("css-fonts");
+    expect(category.specUrl).toMatch(/^https:\/\//);
   });
 });
