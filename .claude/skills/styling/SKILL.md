@@ -1,9 +1,6 @@
 ---
 name: styling
-description: >
-  スタイリング規約。Tailwind CSS v4 と inline styles の使い分け。
-  UI コンポーネントやプレビュー領域のスタイリング時に適用する。
-  Tailwind はアプリ UI に、inline styles はプレビュー領域に使い、混在させない。
+description: スタイリング規約。Tailwind CSS v4 と inline styles の使い分け。 UI コンポーネントやプレビュー領域のスタイリング時に適用する。 Tailwind はアプリ UI に、inline styles はプレビュー領域に使い、混在させない。
 ---
 
 # スタイリング規約

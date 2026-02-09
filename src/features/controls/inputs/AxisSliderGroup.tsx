@@ -55,6 +55,7 @@ export const AxisSliderGroup = ({ value, onChange, config }: Props) => {
               onChange={(e) =>
                 handleAxisChange(axis.tag, Number(e.target.value))
               }
+              aria-label={axis.name}
               className="flex-1"
             />
             <input
@@ -66,6 +67,7 @@ export const AxisSliderGroup = ({ value, onChange, config }: Props) => {
               onChange={(e) =>
                 handleAxisChange(axis.tag, Number(e.target.value))
               }
+              aria-label={`${axis.name} value`}
               className="w-16 px-1 py-0.5 text-sm text-right border border-gray-300 rounded"
             />
           </div>

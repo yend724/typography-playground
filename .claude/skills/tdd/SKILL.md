@@ -1,9 +1,6 @@
 ---
 name: tdd
-description: >
-  TDD（テスト駆動開発）のワークフロー。
-  新機能やバグ修正の実装時に適用する。
-  Red → Green → Refactor のサイクルを必ず守る。
+description: TDD（テスト駆動開発）のワークフロー。 新機能やバグ修正の実装時に適用する。 Red → Green → Refactor のサイクルを必ず守る。
 ---
 
 # TDD ワークフロー

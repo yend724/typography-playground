@@ -1,9 +1,6 @@
 ---
-name: commit-conventions
-description: >
-  Git コミットメッセージの規約。Conventional Commits 形式、日本語。
-  Apply when creating git commits, reviewing commit messages,
-  or when the user asks to commit changes.
+name: commit
+description: Git コミットメッセージの規約。Conventional Commits 形式、日本語。 Apply when creating git commits, reviewing commit messages, or when the user asks to commit changes.
 ---
 
 # Commit Conventions
@@ -24,16 +21,16 @@ Conventional Commits 形式。メッセージは日本語。
 
 ## Type 一覧
 
-| Type | 用途 |
-|------|------|
-| `feat` | 新機能 |
-| `fix` | バグ修正 |
-| `refactor` | リファクタリング（機能変更なし） |
-| `style` | フォーマット、セミコロン等（動作に影響なし） |
-| `docs` | ドキュメントのみ |
-| `test` | テストの追加・修正 |
-| `chore` | ビルド、CI、依存関係等 |
-| `perf` | パフォーマンス改善 |
+| Type       | 用途                                         |
+| ---------- | -------------------------------------------- |
+| `feat`     | 新機能                                       |
+| `fix`      | バグ修正                                     |
+| `refactor` | リファクタリング（機能変更なし）             |
+| `style`    | フォーマット、セミコロン等（動作に影響なし） |
+| `docs`     | ドキュメントのみ                             |
+| `test`     | テストの追加・修正                           |
+| `chore`    | ビルド、CI、依存関係等                       |
+| `perf`     | パフォーマンス改善                           |
 
 ## 例
 

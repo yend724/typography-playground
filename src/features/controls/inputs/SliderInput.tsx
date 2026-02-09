@@ -4,6 +4,7 @@ type Props = Readonly<{
   value: string;
   onChange: (value: string) => void;
   config: SliderConfig;
+  label?: string;
 }>;
 
 const parseNumericValue = (value: string, unit: string): number => {
@@ -11,7 +12,7 @@ const parseNumericValue = (value: string, unit: string): number => {
   return Number(numeric) || 0;
 };
 
-export const SliderInput = ({ value, onChange, config }: Props) => {
+export const SliderInput = ({ value, onChange, config, label }: Props) => {
   const numericValue = parseNumericValue(value, config.unit);
 
   const handleChange = (newValue: string) => {
@@ -28,6 +29,7 @@ export const SliderInput = ({ value, onChange, config }: Props) => {
         step={config.step}
         value={numericValue}
         onChange={(e) => handleChange(e.target.value)}
+        aria-label={label}
         className="flex-1"
       />
       <input
@@ -37,6 +39,7 @@ export const SliderInput = ({ value, onChange, config }: Props) => {
         step={config.step}
         value={numericValue}
         onChange={(e) => handleChange(e.target.value)}
+        aria-label={label ? `${label} value` : undefined}
         className="w-16 px-1 py-0.5 text-sm text-right border border-gray-300 rounded"
       />
       {config.unit && (

@@ -1,9 +1,6 @@
 ---
 name: validation
-description: >
-  Zod + neverthrow を使った入力バリデーション規約。
-  バリデーションスキーマ、外部入力のパース、
-  API/フォーム境界での Zod → Result ブリッジの実装時に適用する。
+description: Zod + neverthrow を使った入力バリデーション規約。 バリデーションスキーマ、外部入力のパース、 API/フォーム境界での Zod → Result ブリッジの実装時に適用する。
 ---
 
 # バリデーション規約（Zod + neverthrow）

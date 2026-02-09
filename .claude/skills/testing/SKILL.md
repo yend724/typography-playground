@@ -1,9 +1,6 @@
 ---
 name: testing
-description: >
-  Vitest を使った TypeScript テスト規約。
-  テスト（.test.ts, .test.tsx）の作成・レビュー時に適用する。
-  純関数テスト、Result 型テスト、React コンポーネントテスト、モックを規定。
+description: Vitest を使った TypeScript テスト規約。 テスト（.test.ts, .test.tsx）の作成・レビュー時に適用する。 純関数テスト、Result 型テスト、React コンポーネントテスト、モックを規定。
 ---
 
 # テスト規約（Vitest）

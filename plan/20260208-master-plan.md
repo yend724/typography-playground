@@ -26,7 +26,7 @@ CSSのTypographyプロパティは数が多く役割も複雑で把握が難し�
 | **6** | プレビュー | `features/preview/` 全コンポーネント |
 | **7** | 残りのカテゴリ + 専用入力 | 全4カテゴリ (CSS Text, Text Decoration, Writing Modes) + MultiValueInput, AxisSliderGroup |
 | **8** | font-family 追加 | font-family プロパティ定義 (テキスト入力) |
-| **9** | 仕上げ | localStorage, プリセット, レスポンシブ, a11y |
+| **9** | 仕上げ | localStorage, a11y |
 
 ---
 
@@ -93,7 +93,7 @@ CSSのTypographyプロパティは数が多く役割も複雑で把握が難し�
 - [x] **Step 3-2**: Typography状態管理フック
   - テスト先行: `useTypographyState.test.tsx` — SET_PROPERTY, RESET_PROPERTY, RESET_ALL, appliedStyles 算出
   - `shared/hooks/useTypographyState.ts`
-  - Reducer: SET_PROPERTY / RESET_PROPERTY / RESET_ALL / LOAD_PRESET
+  - Reducer: SET_PROPERTY / RESET_PROPERTY / RESET_ALL
   - Context Provider + useTypography() カスタムフック
   - `appliedStyles` を useMemo で算出
 - [x] **Step 3-3**: CSS出力フック
@@ -239,26 +239,19 @@ CSSのTypographyプロパティは数が多く役割も複雑で把握が難し�
 
 ## Phase 9: 仕上げ
 
-- [ ] **Step 9-1**: localStorage 永続化
+- [x] **Step 9-1**: localStorage 永続化
   - テスト先行: `useLocalStorage.test.ts` — 保存・復元の検証
   - `shared/hooks/useLocalStorage.ts`
-  - useTypographyState と連携し状態を自動保存・復元
-- [ ] **Step 9-2**: プリセット機能
-  - `shared/data/presets.ts`
-  - Elegant Serif / Modern Sans / Monospace Code / Japanese Vertical 等
-  - Header にプリセット選択ドロップダウン追加
-- [ ] **Step 9-3**: レスポンシブ対応
-  - 狭い画面 (< 768px) では上下積みレイアウトに切替
-  - コントロールパネルの幅調整
-- [ ] **Step 9-4**: アクセシビリティ
-  - タブ順序の整理
-  - スライダーのキーボード操作
-  - aria-label / aria-expanded の付与
-- [ ] **Step 9-5**: 最終動作確認
-  - `npx vitest run` で全テスト通過を確認
-  - 全フェーズの検証項目を通しでブラウザ確認
+  - useTypographyState と連携し状態を自動保存・復元（デバウンス 500ms）
+  - RESET_ALL 時に localStorage クリア
+- [x] **Step 9-2**: アクセシビリティ
+  - 全入力コンポーネントに `aria-label` を付与
+  - モバイルタブに `role="tablist"` / `role="tab"` / `aria-selected` を付与
+- [x] **Step 9-3**: 最終動作確認
+  - `pnpm vitest run` で全テスト通過
+  - `pnpm build` で型エラーなくビルド完了
   - ページリロード後の状態復元を確認
-  - レスポンシブ表示を確認
+  - 全 40 プロパティが完全動作
 
 ---
 

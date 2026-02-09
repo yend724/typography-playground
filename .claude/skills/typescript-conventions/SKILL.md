@@ -1,9 +1,6 @@
 ---
 name: typescript-conventions
-description: >
-  関数型プログラミングベースのTypeScriptコーディング規約。
-  TypeScriptコード（.ts/.tsx）の実装時に適用する。
-  型、アロー関数、Result型エラーハンドリング、不変性、命名、import、async、pipe/合成を規定。
+description: 関数型プログラミングベースのTypeScriptコーディング規約。 TypeScriptコード（.ts/.tsx）の実装時に適用する。 型、アロー関数、Result型エラーハンドリング、不変性、命名、import、async、pipe/合成を規定。
 ---
 
 # TypeScript 規約

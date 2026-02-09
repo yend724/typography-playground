@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useTypography } from "../shared/hooks/useTypographyState";
 import { ControlPanel } from "../features/controls/ControlPanel";
 import { PreviewPanel } from "../features/preview/PreviewPanel";
-
 type Tab = "controls" | "preview";
 
 export const PlaygroundView = () => {
@@ -23,8 +22,14 @@ export const PlaygroundView = () => {
         </button>
       </header>
 
-      <nav className="grid grid-cols-2 bg-white border-b border-gray-200 md:hidden">
+      <nav
+        role="tablist"
+        aria-label="Panel switcher"
+        className="grid grid-cols-2 bg-white border-b border-gray-200 md:hidden"
+      >
         <button
+          role="tab"
+          aria-selected={activeTab === "controls"}
           onClick={() => setActiveTab("controls")}
           className={`py-2.5 text-sm text-center transition-colors ${
             activeTab === "controls"
@@ -35,6 +40,8 @@ export const PlaygroundView = () => {
           Controls
         </button>
         <button
+          role="tab"
+          aria-selected={activeTab === "preview"}
           onClick={() => setActiveTab("preview")}
           className={`py-2.5 text-sm text-center transition-colors ${
             activeTab === "preview"

@@ -1,9 +1,6 @@
 ---
 name: react
-description: >
-  React / Next.js の TypeScript 規約。
-  コンポーネント（.tsx）、hooks、Server Components、Client Components、
-  Server Actions の実装時に適用する。
+description: React / Next.js の TypeScript 規約。 コンポーネント（.tsx）、hooks、Server Components、Client Components、 Server Actions の実装時に適用する。
 ---
 
 # React / Next.js 規約

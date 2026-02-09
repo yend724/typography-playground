@@ -52,7 +52,7 @@ describe("PropertyControl", () => {
       controlType: "color",
     };
     render(<PropertyControl definition={definition} />, { wrapper });
-    expect(screen.getByLabelText("color picker")).toBeInTheDocument();
+    expect(screen.getByLabelText("Color color picker")).toBeInTheDocument();
     expect(screen.getByText("Color")).toBeInTheDocument();
   });
 

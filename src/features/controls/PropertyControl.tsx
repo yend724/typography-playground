@@ -26,6 +26,7 @@ export const PropertyControl = ({ definition }: Props) => {
   };
 
   const renderInput = () => {
+    const { label } = definition;
     switch (definition.controlType) {
       case "slider":
         return (
@@ -33,6 +34,7 @@ export const PropertyControl = ({ definition }: Props) => {
             value={currentValue}
             onChange={handleChange}
             config={definition.config}
+            label={label}
           />
         );
       case "select":
@@ -41,12 +43,25 @@ export const PropertyControl = ({ definition }: Props) => {
             value={currentValue}
             onChange={handleChange}
             config={definition.config}
+            label={label}
           />
         );
       case "color":
-        return <ColorInput value={currentValue} onChange={handleChange} />;
+        return (
+          <ColorInput
+            value={currentValue}
+            onChange={handleChange}
+            label={label}
+          />
+        );
       case "text":
-        return <TextInput value={currentValue} onChange={handleChange} />;
+        return (
+          <TextInput
+            value={currentValue}
+            onChange={handleChange}
+            label={label}
+          />
+        );
       case "multi-value":
         return (
           <MultiValueInput

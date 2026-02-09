@@ -1,9 +1,6 @@
 ---
 name: review
-description: >
-  コミット前のセルフレビュー。プロジェクトの規約に沿っているかチェックする。
-  Apply when the user asks to review code, check conventions, or
-  requests a self-review before committing.
+description: コミット前のセルフレビュー。プロジェクトの規約に沿っているかチェックする。 Apply when the user asks to review code, check conventions, or requests a self-review before committing.
 ---
 
 # セルフレビュー
