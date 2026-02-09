@@ -16,8 +16,8 @@ pnpm を使用する。npm / yarn は使わない。
 pnpm dev             # 開発サーバー起動
 pnpm build           # プロダクションビルド
 pnpm preview         # プロダクションビルドのプレビュー
+pnpm test            # 全テスト実行（ワンショット）
 pnpm vitest          # 全テスト実行（watchモード）
-pnpm vitest run      # テスト一回実行
 pnpm vitest <path>   # 単一テストファイル実行
 ```
 

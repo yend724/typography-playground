@@ -39,17 +39,6 @@ pnpm vitest run
 pnpm build
 ```
 
-## ディレクトリ構成
-
-```
-src/
-├── shared/         # 型、データ、hooks、utils、汎用 UI
-├── features/
-│   ├── controls/   # プロパティ操作コントロール
-│   └── preview/    # プレビュー・CSS 出力
-└── views/          # ページレベルコンポーネント
-```
-
 ## ライセンス
 
 MIT
