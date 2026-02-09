@@ -32,6 +32,10 @@ export const PreviewPanel = () => {
       </div>
 
       <CSSOutput cssText={cssText} />
+
+      <p className="text-center text-xs text-gray-400">
+        &copy; 2026 YEND. All rights reserved.
+      </p>
     </div>
   );
 };
