@@ -7,9 +7,10 @@ type Props = Readonly<{
 
 export const CategorySection = ({ category }: Props) => {
   return (
-    <section>
-      <div className="flex items-center justify-between px-4 py-2">
-        <h2 className="text-sm font-semibold text-gray-800">
+    <details open className="group">
+      <summary className="flex cursor-pointer list-none items-center justify-between bg-gray-800 px-4 py-2 [&::-webkit-details-marker]:hidden">
+        <h2 className="flex items-center gap-1.5 text-sm font-semibold text-white">
+          <span className="inline-block transition-transform group-open:rotate-90">&#9654;</span>
           {category.label}
         </h2>
         <div className="flex gap-2 text-xs">
@@ -17,7 +18,8 @@ export const CategorySection = ({ category }: Props) => {
             href={category.specUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
+            className="text-blue-300 hover:underline"
+            onClick={(e) => e.stopPropagation()}
           >
             Spec
           </a>
@@ -25,17 +27,18 @@ export const CategorySection = ({ category }: Props) => {
             href={category.mdnUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
+            className="text-blue-300 hover:underline"
+            onClick={(e) => e.stopPropagation()}
           >
             MDN
           </a>
         </div>
-      </div>
+      </summary>
       <div className="px-4 pb-3">
         {category.properties.map((prop) => (
           <PropertyControl key={prop.cssProperty} definition={prop} />
         ))}
       </div>
-    </section>
+    </details>
   );
 };

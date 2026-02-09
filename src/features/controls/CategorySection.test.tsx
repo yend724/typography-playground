@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, it, expect } from "vitest";
 import type { ReactNode } from "react";
 import type { PropertyCategory } from "../../shared/types/typography";
@@ -39,10 +40,20 @@ describe("CategorySection", () => {
     expect(screen.getByText("CSS Fonts")).toBeInTheDocument();
   });
 
-  it("プロパティが常に表示される（折りたたみなし）", () => {
+  it("デフォルトで開いた状態でプロパティが表示される", () => {
     render(<CategorySection category={testCategory} />, { wrapper });
     expect(screen.getByText("Font Size")).toBeInTheDocument();
     expect(screen.getByText("Color")).toBeInTheDocument();
+  });
+
+  it("ヘッダークリックで折りたたみできる", async () => {
+    const user = userEvent.setup();
+    render(<CategorySection category={testCategory} />, { wrapper });
+
+    const summary = screen.getByText("CSS Fonts").closest("summary")!;
+    await user.click(summary);
+
+    expect(screen.queryByText("Font Size")).not.toBeVisible();
   });
 
   it("W3C Spec へのリンクが表示される", () => {
