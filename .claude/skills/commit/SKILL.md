@@ -54,7 +54,7 @@ chore: neverthrowとzodを依存関係に追加
 
 ## Breaking Changes
 
-破壊的変更は `!` を付与し、body に `BREAKING CHANGE:` を記載。
+破壊的変更は type の後ろに "!" を付与し、body に "BREAKING CHANGE:" を記載する。
 
 ```
 feat(api)!: レスポンス形式をResult型ベースに変更
