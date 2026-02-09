@@ -17,7 +17,12 @@ export const PreviewText = ({ text, appliedStyles }: PreviewTextProps) => {
 
   return (
     <div
-      style={{ all: "revert-layer", whiteSpace: "pre-wrap", overflowWrap: "break-word", ...appliedStyles }}
+      style={{
+        all: "revert-layer",
+        whiteSpace: "pre-wrap",
+        overflowWrap: "break-word",
+        ...appliedStyles,
+      }}
     >
       {displayText}
     </div>

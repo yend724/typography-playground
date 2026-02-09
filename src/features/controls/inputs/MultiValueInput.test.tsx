@@ -39,7 +39,7 @@ describe("MultiValueInput", () => {
         value="0px 0px 0px #000000"
         onChange={vi.fn()}
         config={defaultConfig}
-      />
+      />,
     );
     expect(screen.getByText("Offset X")).toBeInTheDocument();
     expect(screen.getByText("Offset Y")).toBeInTheDocument();
@@ -54,7 +54,7 @@ describe("MultiValueInput", () => {
         value="0px 0px 0px #000000"
         onChange={handleChange}
         config={defaultConfig}
-      />
+      />,
     );
     const spinbuttons = screen.getAllByRole("spinbutton");
     fireEvent.change(spinbuttons[0], { target: { value: "5" } });
@@ -68,7 +68,7 @@ describe("MultiValueInput", () => {
         value="0px 0px 0px #000000"
         onChange={handleChange}
         config={defaultConfig}
-      />
+      />,
     );
     const colorInput = screen.getByLabelText("color picker");
     fireEvent.input(colorInput, { target: { value: "#ff0000" } });

@@ -39,9 +39,7 @@ describe("sanitizeCSSValue", () => {
   });
 
   it("複数の危険パターンを同時に除去する", () => {
-    const result = sanitizeCSSValue(
-      "url(evil) expression(bad) javascript:x",
-    );
+    const result = sanitizeCSSValue("url(evil) expression(bad) javascript:x");
     expect(result).not.toContain("url(");
     expect(result).not.toContain("expression(");
     expect(result).not.toContain("javascript:");

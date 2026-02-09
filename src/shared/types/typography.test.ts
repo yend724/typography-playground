@@ -87,7 +87,14 @@ describe("Typography 型定義", () => {
       controlType: "axis-slider-group",
       config: {
         axes: [
-          { tag: "wght", name: "Weight", min: 100, max: 900, step: 1, defaultValue: 400 },
+          {
+            tag: "wght",
+            name: "Weight",
+            min: 100,
+            max: 900,
+            step: 1,
+            defaultValue: 400,
+          },
         ],
       },
     };

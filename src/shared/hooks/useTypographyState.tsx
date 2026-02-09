@@ -1,4 +1,11 @@
-import { createContext, useContext, useReducer, useMemo, useEffect, useRef } from "react";
+import {
+  createContext,
+  useContext,
+  useReducer,
+  useMemo,
+  useEffect,
+  useRef,
+} from "react";
 import type React from "react";
 import type { ReactNode } from "react";
 import { categories } from "../data/categories";
@@ -59,7 +66,11 @@ const buildInitialState = (): TypographyState => {
 export const TypographyProvider = ({
   children,
 }: Readonly<{ children: ReactNode }>) => {
-  const [state, dispatch] = useReducer(typographyReducer, undefined, buildInitialState);
+  const [state, dispatch] = useReducer(
+    typographyReducer,
+    undefined,
+    buildInitialState,
+  );
   const isResetRef = useRef(false);
 
   const appliedStyles = useMemo(() => buildAppliedStyles(state), [state]);

@@ -45,16 +45,16 @@ src/views/      → ページレベルコンポーネント（PlaygroundView）
 
 詳細は各 skill を参照。コーディング規約は `docs/coding-guidelines.md` にもまとめてある。
 
-| skill | 内容 |
-|-------|------|
-| `typescript-conventions` | 関数型 TS 規約（アロー関数、`type` + `Readonly`、ユニオン型、`any` 禁止） |
-| `react` | React / Next.js 規約（アロー関数コンポーネント、Props 分割代入、不変 state） |
-| `styling` | Tailwind CSS v4（アプリ UI）と inline styles（プレビュー領域）の使い分け |
-| `testing` | Vitest + Testing Library 規約（振る舞いテスト、モック最小限） |
-| `tdd` | TDD ワークフロー（Red → Green → Refactor） |
-| `validation` | Zod + neverthrow による入力バリデーション |
-| `commit-conventions` | Conventional Commits 形式（日本語） |
-| `review` | コミット前のセルフレビュー |
+| skill                    | 内容                                                                         |
+| ------------------------ | ---------------------------------------------------------------------------- |
+| `typescript-conventions` | 関数型 TS 規約（アロー関数、`type` + `Readonly`、ユニオン型、`any` 禁止）    |
+| `react`                  | React / Next.js 規約（アロー関数コンポーネント、Props 分割代入、不変 state） |
+| `styling`                | Tailwind CSS v4（アプリ UI）と inline styles（プレビュー領域）の使い分け     |
+| `testing`                | Vitest + Testing Library 規約（振る舞いテスト、モック最小限）                |
+| `tdd`                    | TDD ワークフロー（Red → Green → Refactor）                                   |
+| `validation`             | Zod + neverthrow による入力バリデーション                                    |
+| `commit-conventions`     | Conventional Commits 形式（日本語）                                          |
+| `review`                 | コミット前のセルフレビュー                                                   |
 
 ## 実装計画
 
@@ -66,12 +66,12 @@ src/views/      → ページレベルコンポーネント（PlaygroundView）
 
 同じやり取りの繰り返しや、汎用的に適用すべきルール・パターンを発見した場合は、都度適切な場所に記録すること。再度指示を受けるのを待たず、自律的に判断して書き込む。記録すべきか判断に迷った場合はユーザーに確認する。
 
-| 記録先 | 用途 |
-|--------|------|
-| `CLAUDE.md` | プロジェクト全体に関わるルール・方針の追加・更新 |
-| `.claude/skills/` | コーディング規約・ワークフローなど再利用可能なスキル定義 |
-| `.claude/rules/` | 自動適用されるルール（ファイルパターン別トリガーなど） |
-| `docs/` | アーキテクチャ・設計判断・ガイドラインの詳細ドキュメント |
-| `.claude/commands/` | カスタムスラッシュコマンド（定型ワークフローの自動化） |
-| `.claude/agents/` | カスタムサブエージェント（専門タスク特化） |
-| `plan/` | Phase ごとの実装計画 |
+| 記録先              | 用途                                                     |
+| ------------------- | -------------------------------------------------------- |
+| `CLAUDE.md`         | プロジェクト全体に関わるルール・方針の追加・更新         |
+| `.claude/skills/`   | コーディング規約・ワークフローなど再利用可能なスキル定義 |
+| `.claude/rules/`    | 自動適用されるルール（ファイルパターン別トリガーなど）   |
+| `docs/`             | アーキテクチャ・設計判断・ガイドラインの詳細ドキュメント |
+| `.claude/commands/` | カスタムスラッシュコマンド（定型ワークフローの自動化）   |
+| `.claude/agents/`   | カスタムサブエージェント（専門タスク特化）               |
+| `plan/`             | Phase ごとの実装計画                                     |

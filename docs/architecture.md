@@ -161,74 +161,73 @@ src/
 
 ### 1. Basic Text（10プロパティ）- デフォルト展開
 
-| プロパティ | コントロール | 設定 |
-|---|---|---|
-| font-family | text | 自由入力 |
-| font-size | slider | 8–120px, step 1 |
-| font-weight | slider | 100–900, step 100 |
-| font-style | select | normal / italic / oblique |
-| line-height | slider | 0.5–4, step 0.1 (unitless) |
-| letter-spacing | slider | -5–20px, step 0.5 |
-| word-spacing | slider | -5–30px, step 0.5 |
-| text-align | select | start / end / left / center / right / justify |
-| text-indent | slider | -50–100px, step 1 |
-| color | color | カラーピッカー |
+| プロパティ     | コントロール | 設定                                          |
+| -------------- | ------------ | --------------------------------------------- |
+| font-family    | text         | 自由入力                                      |
+| font-size      | slider       | 8–120px, step 1                               |
+| font-weight    | slider       | 100–900, step 100                             |
+| font-style     | select       | normal / italic / oblique                     |
+| line-height    | slider       | 0.5–4, step 0.1 (unitless)                    |
+| letter-spacing | slider       | -5–20px, step 0.5                             |
+| word-spacing   | slider       | -5–30px, step 0.5                             |
+| text-align     | select       | start / end / left / center / right / justify |
+| text-indent    | slider       | -50–100px, step 1                             |
+| color          | color        | カラーピッカー                                |
 
 ### 2. Decoration & Transform（10プロパティ）- 折りたたみ
 
-| プロパティ | コントロール | 設定 |
-|---|---|---|
-| text-decoration-line | select | none / underline / overline / line-through |
-| text-decoration-style | select | solid / double / dotted / dashed / wavy |
-| text-decoration-color | color | カラーピッカー |
-| text-decoration-thickness | slider | 0–10px, step 0.5 |
-| text-underline-offset | slider | -5–15px, step 1 |
-| text-decoration-skip-ink | select | auto / all / none |
-| text-transform | select | none / uppercase / lowercase / capitalize / full-width |
-| text-shadow | multi-value | offsetX / offsetY / blur / color |
-| font-variant-caps | select | normal / small-caps / all-small-caps 他 |
-| font-variant-numeric | select | normal / ordinal / slashed-zero / lining-nums 他 |
+| プロパティ                | コントロール | 設定                                                   |
+| ------------------------- | ------------ | ------------------------------------------------------ |
+| text-decoration-line      | select       | none / underline / overline / line-through             |
+| text-decoration-style     | select       | solid / double / dotted / dashed / wavy                |
+| text-decoration-color     | color        | カラーピッカー                                         |
+| text-decoration-thickness | slider       | 0–10px, step 0.5                                       |
+| text-underline-offset     | slider       | -5–15px, step 1                                        |
+| text-decoration-skip-ink  | select       | auto / all / none                                      |
+| text-transform            | select       | none / uppercase / lowercase / capitalize / full-width |
+| text-shadow               | multi-value  | offsetX / offsetY / blur / color                       |
+| font-variant-caps         | select       | normal / small-caps / all-small-caps 他                |
+| font-variant-numeric      | select       | normal / ordinal / slashed-zero / lining-nums 他       |
 
 ### 3. Advanced（12プロパティ）- 折りたたみ
 
-| プロパティ | コントロール | 設定 |
-|---|---|---|
-| writing-mode | select | horizontal-tb / vertical-rl / vertical-lr |
-| text-orientation | select | mixed / upright / sideways |
-| direction | select | ltr / rtl |
-| unicode-bidi | select | normal / embed / bidi-override / isolate 他 |
-| text-overflow | select | clip / ellipsis |
-| white-space | select | normal / nowrap / pre / pre-wrap / pre-line / break-spaces |
-| word-break | select | normal / break-all / keep-all / break-word |
-| overflow-wrap | select | normal / break-word / anywhere |
-| hyphens | select | none / manual / auto |
-| column-count | slider | 1–6, step 1 |
-| column-gap | slider | 0–60px, step 1 |
-| column-rule | text | 自由入力 (例: "1px solid #ccc") |
+| プロパティ       | コントロール | 設定                                                       |
+| ---------------- | ------------ | ---------------------------------------------------------- |
+| writing-mode     | select       | horizontal-tb / vertical-rl / vertical-lr                  |
+| text-orientation | select       | mixed / upright / sideways                                 |
+| direction        | select       | ltr / rtl                                                  |
+| unicode-bidi     | select       | normal / embed / bidi-override / isolate 他                |
+| text-overflow    | select       | clip / ellipsis                                            |
+| white-space      | select       | normal / nowrap / pre / pre-wrap / pre-line / break-spaces |
+| word-break       | select       | normal / break-all / keep-all / break-word                 |
+| overflow-wrap    | select       | normal / break-word / anywhere                             |
+| hyphens          | select       | none / manual / auto                                       |
+| column-count     | slider       | 1–6, step 1                                                |
+| column-gap       | slider       | 0–60px, step 1                                             |
+| column-rule      | text         | 自由入力 (例: "1px solid #ccc")                            |
 
 ### 4. OpenType Features（8プロパティ）- 折りたたみ
 
-| プロパティ | コントロール | 設定 |
-|---|---|---|
-| font-feature-settings | text | 自由入力 (例: "'liga' 1, 'kern' 1") |
-| font-variant-ligatures | select | normal / none / common-ligatures 他 |
-| font-variant-east-asian | select | normal / jis78 / jis83 / simplified 他 |
-| font-optical-sizing | select | auto / none |
-| font-variation-settings | axis-slider-group | wght / wdth / slnt / ital 軸 |
-| font-kerning | select | auto / normal / none |
-| font-size-adjust | slider | 0–1, step 0.01 |
-| font-stretch | select | ultra-condensed ～ ultra-expanded |
+| プロパティ              | コントロール      | 設定                                   |
+| ----------------------- | ----------------- | -------------------------------------- |
+| font-feature-settings   | text              | 自由入力 (例: "'liga' 1, 'kern' 1")    |
+| font-variant-ligatures  | select            | normal / none / common-ligatures 他    |
+| font-variant-east-asian | select            | normal / jis78 / jis83 / simplified 他 |
+| font-optical-sizing     | select            | auto / none                            |
+| font-variation-settings | axis-slider-group | wght / wdth / slnt / ital 軸           |
+| font-kerning            | select            | auto / normal / none                   |
+| font-size-adjust        | slider            | 0–1, step 0.01                         |
+| font-stretch            | select            | ultra-condensed ～ ultra-expanded      |
 
 ---
 
 ## 入力コンポーネント種別
 
-| controlType | 用途 | 対応プロパティ例 |
-|---|---|---|
-| `slider` | 数値範囲 (range + number入力) | font-size, line-height |
-| `select` | 列挙値ドロップダウン | font-style, text-align |
-| `color` | カラーピッカー | color, text-decoration-color |
-| `text` | 自由テキスト入力 | font-family, font-feature-settings |
-| `multi-value` | 複合値（複数サブ値の組み合わせ） | text-shadow |
-| `axis-slider-group` | Variable Font軸スライダー群 | font-variation-settings |
-
+| controlType         | 用途                             | 対応プロパティ例                   |
+| ------------------- | -------------------------------- | ---------------------------------- |
+| `slider`            | 数値範囲 (range + number入力)    | font-size, line-height             |
+| `select`            | 列挙値ドロップダウン             | font-style, text-align             |
+| `color`             | カラーピッカー                   | color, text-decoration-color       |
+| `text`              | 自由テキスト入力                 | font-family, font-feature-settings |
+| `multi-value`       | 複合値（複数サブ値の組み合わせ） | text-shadow                        |
+| `axis-slider-group` | Variable Font軸スライダー群      | font-variation-settings            |

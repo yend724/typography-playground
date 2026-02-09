@@ -22,9 +22,7 @@ describe("PreviewControls", () => {
 
   it("テキスト変更で onPreviewTextChange が呼ばれる", () => {
     const handler = vi.fn();
-    render(
-      <PreviewControls {...defaultProps} onPreviewTextChange={handler} />
-    );
+    render(<PreviewControls {...defaultProps} onPreviewTextChange={handler} />);
     fireEvent.change(screen.getByRole("textbox"), {
       target: { value: "New text" },
     });
@@ -40,7 +38,7 @@ describe("PreviewControls", () => {
   it("Dark ボタンクリックで onBackgroundModeChange が呼ばれる", () => {
     const handler = vi.fn();
     render(
-      <PreviewControls {...defaultProps} onBackgroundModeChange={handler} />
+      <PreviewControls {...defaultProps} onBackgroundModeChange={handler} />,
     );
     fireEvent.click(screen.getByRole("button", { name: "Dark" }));
     expect(handler).toHaveBeenCalledWith("dark");
@@ -53,7 +51,7 @@ describe("PreviewControls", () => {
         {...defaultProps}
         backgroundMode="dark"
         onBackgroundModeChange={handler}
-      />
+      />,
     );
     fireEvent.click(screen.getByRole("button", { name: "Light" }));
     expect(handler).toHaveBeenCalledWith("light");

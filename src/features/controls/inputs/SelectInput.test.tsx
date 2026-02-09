@@ -13,14 +13,14 @@ const defaultConfig = {
 describe("SelectInput", () => {
   it("select 要素が表示される", () => {
     render(
-      <SelectInput value="normal" onChange={vi.fn()} config={defaultConfig} />
+      <SelectInput value="normal" onChange={vi.fn()} config={defaultConfig} />,
     );
     expect(screen.getByRole("combobox")).toBeInTheDocument();
   });
 
   it("全選択肢が表示される", () => {
     render(
-      <SelectInput value="normal" onChange={vi.fn()} config={defaultConfig} />
+      <SelectInput value="normal" onChange={vi.fn()} config={defaultConfig} />,
     );
     const options = screen.getAllByRole("option");
     expect(options).toHaveLength(3);
@@ -29,7 +29,11 @@ describe("SelectInput", () => {
   it("選択変更で onChange が呼ばれる", () => {
     const handleChange = vi.fn();
     render(
-      <SelectInput value="normal" onChange={handleChange} config={defaultConfig} />
+      <SelectInput
+        value="normal"
+        onChange={handleChange}
+        config={defaultConfig}
+      />,
     );
     fireEvent.change(screen.getByRole("combobox"), {
       target: { value: "italic" },

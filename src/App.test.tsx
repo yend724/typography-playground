@@ -6,7 +6,7 @@ describe("App", () => {
   it("タイトルが表示される", () => {
     render(<App />);
     expect(
-      screen.getByRole("heading", { name: /typography playground/i })
+      screen.getByRole("heading", { name: /typography playground/i }),
     ).toBeInTheDocument();
   });
 });

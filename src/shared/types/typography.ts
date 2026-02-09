@@ -55,11 +55,14 @@ export type PropertyDefinitionBase = Readonly<{
 }>;
 
 export type PropertyDefinition =
-  | (PropertyDefinitionBase & Readonly<{ controlType: "slider"; config: SliderConfig }>)
-  | (PropertyDefinitionBase & Readonly<{ controlType: "select"; config: SelectConfig }>)
+  | (PropertyDefinitionBase &
+      Readonly<{ controlType: "slider"; config: SliderConfig }>)
+  | (PropertyDefinitionBase &
+      Readonly<{ controlType: "select"; config: SelectConfig }>)
   | (PropertyDefinitionBase & Readonly<{ controlType: "color" }>)
   | (PropertyDefinitionBase & Readonly<{ controlType: "text" }>)
-  | (PropertyDefinitionBase & Readonly<{ controlType: "multi-value"; config: MultiValueConfig }>)
+  | (PropertyDefinitionBase &
+      Readonly<{ controlType: "multi-value"; config: MultiValueConfig }>)
   | (PropertyDefinitionBase &
       Readonly<{ controlType: "axis-slider-group"; config: AxisConfig }>);
 

@@ -21,7 +21,7 @@ describe("useCSSOutput", () => {
         const cssOutput = useCSSOutput();
         return { typography, cssOutput };
       },
-      { wrapper }
+      { wrapper },
     );
 
     act(() => {
@@ -39,7 +39,7 @@ describe("useCSSOutput", () => {
         const cssOutput = useCSSOutput();
         return { typography, cssOutput };
       },
-      { wrapper }
+      { wrapper },
     );
 
     act(() => {
@@ -47,6 +47,8 @@ describe("useCSSOutput", () => {
       result.current.typography.setProperty("font-weight", "700");
     });
 
-    expect(result.current.cssOutput).toBe("font-size: 24px;\nfont-weight: 700;");
+    expect(result.current.cssOutput).toBe(
+      "font-size: 24px;\nfont-weight: 700;",
+    );
   });
 });

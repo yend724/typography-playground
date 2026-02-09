@@ -8,7 +8,7 @@ type Props = Readonly<{
 
 const parseAxisValues = (
   value: string,
-  config: AxisConfig
+  config: AxisConfig,
 ): Record<string, number> => {
   const result: Record<string, number> = {};
   for (const axis of config.axes) {
@@ -26,7 +26,7 @@ const parseAxisValues = (
 
 const buildAxisValue = (
   axisValues: Record<string, number>,
-  config: AxisConfig
+  config: AxisConfig,
 ): string =>
   config.axes
     .map((axis) => `"${axis.tag}" ${axisValues[axis.tag] ?? axis.defaultValue}`)

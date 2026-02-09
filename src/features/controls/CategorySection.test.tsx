@@ -61,7 +61,7 @@ describe("CategorySection", () => {
     const specLink = screen.getByRole("link", { name: /spec/i });
     expect(specLink).toHaveAttribute(
       "href",
-      "https://www.w3.org/TR/css-fonts-4/"
+      "https://www.w3.org/TR/css-fonts-4/",
     );
     expect(specLink).toHaveAttribute("target", "_blank");
   });
@@ -71,7 +71,7 @@ describe("CategorySection", () => {
     const mdnLink = screen.getByRole("link", { name: /mdn/i });
     expect(mdnLink).toHaveAttribute(
       "href",
-      "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_fonts"
+      "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_fonts",
     );
     expect(mdnLink).toHaveAttribute("target", "_blank");
   });

@@ -10,7 +10,7 @@ type Props = Readonly<{
 
 const parseSubValues = (
   value: string,
-  config: MultiValueConfig
+  config: MultiValueConfig,
 ): Record<string, string> => {
   const parts = value.split(" ");
   const result: Record<string, string> = {};
@@ -22,7 +22,7 @@ const parseSubValues = (
 
 const buildValue = (
   subValues: Record<string, string>,
-  template: string
+  template: string,
 ): string => {
   let result = template;
   for (const [name, val] of Object.entries(subValues)) {

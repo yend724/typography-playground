@@ -5,8 +5,22 @@ import { AxisSliderGroup } from "./AxisSliderGroup";
 
 const defaultConfig: AxisConfig = {
   axes: [
-    { tag: "wght", name: "Weight", min: 100, max: 900, step: 1, defaultValue: 400 },
-    { tag: "wdth", name: "Width", min: 75, max: 125, step: 0.5, defaultValue: 100 },
+    {
+      tag: "wght",
+      name: "Weight",
+      min: 100,
+      max: 900,
+      step: 1,
+      defaultValue: 400,
+    },
+    {
+      tag: "wdth",
+      name: "Width",
+      min: 75,
+      max: 125,
+      step: 0.5,
+      defaultValue: 100,
+    },
   ],
 };
 
@@ -17,7 +31,7 @@ describe("AxisSliderGroup", () => {
         value={'"wght" 400, "wdth" 100'}
         onChange={vi.fn()}
         config={defaultConfig}
-      />
+      />,
     );
     expect(screen.getByText("Weight")).toBeInTheDocument();
     expect(screen.getByText("Width")).toBeInTheDocument();
@@ -29,7 +43,7 @@ describe("AxisSliderGroup", () => {
         value={'"wght" 400, "wdth" 100'}
         onChange={vi.fn()}
         config={defaultConfig}
-      />
+      />,
     );
     expect(screen.getAllByRole("slider")).toHaveLength(2);
   });
@@ -41,7 +55,7 @@ describe("AxisSliderGroup", () => {
         value={'"wght" 400, "wdth" 100'}
         onChange={handleChange}
         config={defaultConfig}
-      />
+      />,
     );
     const spinbuttons = screen.getAllByRole("spinbutton");
     fireEvent.change(spinbuttons[0], { target: { value: "700" } });

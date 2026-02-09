@@ -10,7 +10,9 @@ export const CategorySection = ({ category }: Props) => {
     <details open className="group">
       <summary className="flex cursor-pointer list-none items-center justify-between bg-gray-800 px-4 py-2 [&::-webkit-details-marker]:hidden">
         <h2 className="flex items-center gap-1.5 text-sm font-semibold text-white">
-          <span className="inline-block transition-transform group-open:rotate-90">&#9654;</span>
+          <span className="inline-block transition-transform group-open:rotate-90">
+            &#9654;
+          </span>
           {category.label}
         </h2>
         <div className="flex gap-2 text-xs">

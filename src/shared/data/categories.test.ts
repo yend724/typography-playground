@@ -19,7 +19,7 @@ describe("categories", () => {
 
   it("全カテゴリを通じて cssProperty に重複がない", () => {
     const allProps = categories.flatMap((c) =>
-      c.properties.map((p) => p.cssProperty)
+      c.properties.map((p) => p.cssProperty),
     );
     expect(new Set(allProps).size).toBe(allProps.length);
   });

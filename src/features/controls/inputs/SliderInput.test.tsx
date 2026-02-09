@@ -7,7 +7,7 @@ const defaultConfig = { min: 8, max: 120, step: 1, unit: "px" } as const;
 describe("SliderInput", () => {
   it("range スライダーと number 入力が表示される", () => {
     render(
-      <SliderInput value="16px" onChange={vi.fn()} config={defaultConfig} />
+      <SliderInput value="16px" onChange={vi.fn()} config={defaultConfig} />,
     );
     expect(screen.getByRole("slider")).toBeInTheDocument();
     expect(screen.getByRole("spinbutton")).toBeInTheDocument();
@@ -16,7 +16,11 @@ describe("SliderInput", () => {
   it("number 入力の変更で onChange が呼ばれる", () => {
     const handleChange = vi.fn();
     render(
-      <SliderInput value="16px" onChange={handleChange} config={defaultConfig} />
+      <SliderInput
+        value="16px"
+        onChange={handleChange}
+        config={defaultConfig}
+      />,
     );
     fireEvent.change(screen.getByRole("spinbutton"), {
       target: { value: "24" },
@@ -27,7 +31,11 @@ describe("SliderInput", () => {
   it("range スライダーの変更で onChange が呼ばれる", () => {
     const handleChange = vi.fn();
     render(
-      <SliderInput value="16px" onChange={handleChange} config={defaultConfig} />
+      <SliderInput
+        value="16px"
+        onChange={handleChange}
+        config={defaultConfig}
+      />,
     );
     fireEvent.change(screen.getByRole("slider"), {
       target: { value: "32" },
@@ -38,9 +46,7 @@ describe("SliderInput", () => {
   it("単位なしの場合は値のみで onChange が呼ばれる", () => {
     const handleChange = vi.fn();
     const config = { min: 100, max: 900, step: 100, unit: "" } as const;
-    render(
-      <SliderInput value="400" onChange={handleChange} config={config} />
-    );
+    render(<SliderInput value="400" onChange={handleChange} config={config} />);
     fireEvent.change(screen.getByRole("spinbutton"), {
       target: { value: "700" },
     });
@@ -49,7 +55,7 @@ describe("SliderInput", () => {
 
   it("単位が表示される", () => {
     render(
-      <SliderInput value="16px" onChange={vi.fn()} config={defaultConfig} />
+      <SliderInput value="16px" onChange={vi.fn()} config={defaultConfig} />,
     );
     expect(screen.getByText("px")).toBeInTheDocument();
   });

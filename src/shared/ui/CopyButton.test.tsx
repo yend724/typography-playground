@@ -16,7 +16,9 @@ describe("CopyButton", () => {
 
   it("カスタムラベルが表示される", () => {
     render(<CopyButton text="copied text" label="Copy CSS" />);
-    expect(screen.getByRole("button", { name: "Copy CSS" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: "Copy CSS" }),
+    ).toBeInTheDocument();
   });
 
   it("クリックで clipboard.writeText が呼ばれる", async () => {

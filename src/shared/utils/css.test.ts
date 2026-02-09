@@ -5,7 +5,9 @@ describe("cssPropertyToReact", () => {
   it("kebab-case を camelCase に変換する", () => {
     expect(cssPropertyToReact("font-size")).toBe("fontSize");
     expect(cssPropertyToReact("letter-spacing")).toBe("letterSpacing");
-    expect(cssPropertyToReact("text-decoration-line")).toBe("textDecorationLine");
+    expect(cssPropertyToReact("text-decoration-line")).toBe(
+      "textDecorationLine",
+    );
   });
 
   it("単一語はそのまま返す", () => {
@@ -15,7 +17,7 @@ describe("cssPropertyToReact", () => {
 
 describe("buildAppliedStyles", () => {
   it("state の値を React.CSSProperties に変換する", () => {
-    const state = { "font-size": "24px", "color": "#ff0000" };
+    const state = { "font-size": "24px", color: "#ff0000" };
     const result = buildAppliedStyles(state);
     expect(result).toEqual({ fontSize: "24px", color: "#ff0000" });
   });
@@ -23,7 +25,7 @@ describe("buildAppliedStyles", () => {
   it("undefined の値は含めない", () => {
     const state: Record<string, string | undefined> = {
       "font-size": "24px",
-      "color": undefined,
+      color: undefined,
     };
     const result = buildAppliedStyles(state);
     expect(result).toEqual({ fontSize: "24px" });
@@ -41,7 +43,7 @@ describe("buildAppliedStyles", () => {
   });
 
   it("expression() を含む値はサニタイズされる", () => {
-    const state = { "color": "expression(alert(1))" };
+    const state = { color: "expression(alert(1))" };
     const result = buildAppliedStyles(state);
     expect(result).toEqual({ color: "" });
   });

@@ -13,7 +13,7 @@ describe("PreviewText", () => {
       <PreviewText
         text="Sample"
         appliedStyles={{ fontSize: "24px", color: "red" }}
-      />
+      />,
     );
     const el = screen.getByText("Sample");
     expect(el).toHaveStyle({ fontSize: "24px", color: "rgb(255, 0, 0)" });
