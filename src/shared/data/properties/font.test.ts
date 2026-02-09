@@ -2,8 +2,8 @@ import { describe, it, expect } from "vitest";
 import { fontProperties } from "./font";
 
 describe("fontProperties", () => {
-  it("11 個のプロパティが定義されている", () => {
-    expect(fontProperties).toHaveLength(11);
+  it("12 個のプロパティが定義されている", () => {
+    expect(fontProperties).toHaveLength(12);
   });
 
   it("すべてのプロパティに必須フィールドがある", () => {

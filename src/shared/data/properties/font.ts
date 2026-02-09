@@ -2,6 +2,13 @@ import type { PropertyDefinition } from "../../types/typography";
 
 export const fontProperties: readonly PropertyDefinition[] = [
   {
+    cssProperty: "font-family",
+    label: "Font Family",
+    description: "フォントファミリーを設定します",
+    defaultValue: "system-ui, sans-serif",
+    controlType: "text",
+  },
+  {
     cssProperty: "font-size",
     label: "Font Size",
     description: "テキストのフォントサイズを設定します",

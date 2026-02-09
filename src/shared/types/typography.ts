@@ -3,7 +3,6 @@ export type ControlType =
   | "select"
   | "color"
   | "text"
-  | "font-family"
   | "multi-value"
   | "axis-slider-group";
 
@@ -60,7 +59,6 @@ export type PropertyDefinition =
   | (PropertyDefinitionBase & Readonly<{ controlType: "select"; config: SelectConfig }>)
   | (PropertyDefinitionBase & Readonly<{ controlType: "color" }>)
   | (PropertyDefinitionBase & Readonly<{ controlType: "text" }>)
-  | (PropertyDefinitionBase & Readonly<{ controlType: "font-family" }>)
   | (PropertyDefinitionBase & Readonly<{ controlType: "multi-value"; config: MultiValueConfig }>)
   | (PropertyDefinitionBase &
       Readonly<{ controlType: "axis-slider-group"; config: AxisConfig }>);

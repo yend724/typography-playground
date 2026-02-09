@@ -25,7 +25,7 @@ CSSのTypographyプロパティは数が多く役割も複雑で把握が難し�
 | **5** | 入力コンポーネント群 | `features/controls/` (CSS Fonts 完動) |
 | **6** | プレビュー | `features/preview/` 全コンポーネント |
 | **7** | 残りのカテゴリ + 専用入力 | 全4カテゴリ (CSS Text, Text Decoration, Writing Modes) + MultiValueInput, AxisSliderGroup |
-| **8** | Google Fonts連携 | FontFamilyInput, useGoogleFonts |
+| **8** | font-family 追加 | font-family プロパティ定義 (テキスト入力) |
 | **9** | 仕上げ | localStorage, プリセット, レスポンシブ, a11y |
 
 ---
@@ -75,7 +75,7 @@ CSSのTypographyプロパティは数が多く役割も複雑で把握が難し�
   - テスト: 必須フィールドの存在、cssProperty の重複なし (`font.test.ts`)
   - `shared/data/properties/font.ts`
   - 11プロパティ: font-size, font-weight, font-style, font-stretch, font-size-adjust, font-kerning, font-optical-sizing, font-variant-caps, font-variant-numeric, font-feature-settings, font-variation-settings
-  - ※ font-family は Phase 8 (Google Fonts連携) で FontFamilyInput と同時に追加
+  - ※ font-family は Phase 8 で追加
 - [x] **Step 2-3**: カテゴリ組み立て
   - テスト: カテゴリ配列の整合性 (`categories.test.ts`)
   - `shared/data/categories.ts`
@@ -225,36 +225,15 @@ CSSのTypographyプロパティは数が多く役割も複雑で把握が難し�
 
 ---
 
-## Phase 8: Google Fonts連携
+## Phase 8: font-family 追加
 
-- [ ] **Step 8-1**: フォントデータ作成
-  - テスト先行: `fonts.test.ts` — データ構造の整合性、重複なし
-  - `shared/data/fonts.ts`
-  - 厳選80フォント (Sans-serif / Serif / Monospace / Display / Handwriting)
-  - 日本語フォント含む (Noto Sans JP, Noto Serif JP, M PLUS Rounded 1c 等)
-- [ ] **Step 8-2**: フォントユーティリティ
-  - テスト先行: `fonts.test.ts` (utils) — URL構築の正確性
-  - `shared/utils/fonts.ts`
-  - Google Fonts CSS URL 構築ヘルパー
-- [ ] **Step 8-3**: useGoogleFonts フック
-  - テスト先行: `useGoogleFonts.test.tsx` — 検索フィルタ、loadFont 呼び出し
-  - `shared/hooks/useGoogleFonts.ts`
-  - 検索 / カテゴリフィルタ
-  - 動的 `<link>` タグ挿入 + CSS Font Loading API で読み込み待機
-- [ ] **Step 8-4**: FontFamilyInput
-  - テスト先行: `FontFamilyInput.test.tsx` — フォント選択 → onChange
-  - `features/controls/inputs/FontFamilyInput.tsx`
-  - 検索可能ドロップダウン
-  - カテゴリフィルタータブ
-  - ドロップダウン内でフォントプレビュー表示
-- [ ] **Step 8-5**: font-family プロパティ定義追加
-  - `shared/data/properties/font.ts` に font-family を追加
-  - PropertyControl に `font-family` → FontFamilyInput のディスパッチ追加
-- [ ] **Step 8-6**: 動作確認
-  - `npx vitest run` で全テスト通過を確認
-  - フォント検索 → 選択 → プレビュー反映をブラウザで確認
-  - 日本語フォントの読み込み・表示を確認
-  - 全38プロパティが完全動作することを確認
+- [x] **Step 8-1**: font-family プロパティ定義追加
+  - `shared/data/properties/font.ts` に font-family を追加 (controlType: "text")
+  - CSS font-family 値をテキスト入力で自由に設定可能
+- [x] **Step 8-2**: 動作確認
+  - `pnpm vitest run` で全テスト通過を確認
+  - `pnpm build` 型エラーなくビルド完了
+  - 全40プロパティが完全動作
 
 ---
 
@@ -289,5 +268,4 @@ CSSのTypographyプロパティは数が多く役割も複雑で把握が難し�
 2. `npm run dev` でローカルサーバー起動
 3. 各カテゴリのプロパティ操作 → プレビューにリアルタイム反映を確認
 4. CSSOutput にプロパティが正しく出力されることを確認
-5. Google Fonts フォント切替が動作することを確認
-6. ブラウザDevToolsでプレビュー要素のスタイルを検査
+5. ブラウザDevToolsでプレビュー要素のスタイルを検査

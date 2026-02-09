@@ -95,19 +95,16 @@ src/
 │   │   └── typography.ts              # PropertyDefinition, PropertyCategory 等
 │   ├── data/
 │   │   ├── categories.ts              # カテゴリ組み立て
-│   │   ├── fonts.ts                   # Google Fonts一覧 (80フォント)
 │   │   └── properties/
-│   │       ├── basicText.ts           # Basic Text (10)
-│   │       ├── decorationTransform.ts # Decoration & Transform (10)
-│   │       ├── advanced.ts            # Advanced (12)
-│   │       └── opentype.ts            # OpenType Features (8)
+│   │       ├── font.ts                # CSS Fonts (12)
+│   │       ├── text.ts                # CSS Text (17)
+│   │       ├── textDecoration.ts      # CSS Text Decoration (7)
+│   │       └── writingModes.ts        # CSS Writing Modes (3)
 │   ├── hooks/
 │   │   ├── useTypographyState.ts      # useReducer + Context
-│   │   ├── useGoogleFonts.ts          # フォント読み込み
 │   │   └── useCSSOutput.ts            # CSS文字列生成
 │   ├── utils/
-│   │   ├── css.ts                     # kebab→camelCase変換
-│   │   └── fonts.ts                   # フォントURL構築
+│   │   └── css.ts                     # kebab→camelCase変換
 │   └── ui/                            # 汎用UIパーツ (どこからでも使える)
 │       ├── Tooltip.tsx                # ツールチップ
 │       └── CopyButton.tsx             # コピーボタン
@@ -123,7 +120,6 @@ src/
 │   │       ├── SelectInput.tsx        # ドロップダウン
 │   │       ├── ColorInput.tsx         # カラーピッカー
 │   │       ├── TextInput.tsx          # テキスト入力
-│   │       ├── FontFamilyInput.tsx    # フォント選択
 │   │       ├── MultiValueInput.tsx    # 複合値 (text-shadow)
 │   │       └── AxisSliderGroup.tsx    # Variable Font軸
 │   └── preview/                       # プレビュー機能
@@ -167,7 +163,7 @@ src/
 
 | プロパティ | コントロール | 設定 |
 |---|---|---|
-| font-family | font-family | Google Fonts検索 |
+| font-family | text | 自由入力 |
 | font-size | slider | 8–120px, step 1 |
 | font-weight | slider | 100–900, step 100 |
 | font-style | select | normal / italic / oblique |
@@ -232,16 +228,7 @@ src/
 | `slider` | 数値範囲 (range + number入力) | font-size, line-height |
 | `select` | 列挙値ドロップダウン | font-style, text-align |
 | `color` | カラーピッカー | color, text-decoration-color |
-| `text` | 自由テキスト入力 | font-feature-settings, column-rule |
-| `font-family` | Google Fonts検索・選択 | font-family |
+| `text` | 自由テキスト入力 | font-family, font-feature-settings |
 | `multi-value` | 複合値（複数サブ値の組み合わせ） | text-shadow |
 | `axis-slider-group` | Variable Font軸スライダー群 | font-variation-settings |
 
----
-
-## Google Fonts連携
-
-- **APIキー不要**: 厳選80フォントを静的データとして保持
-- 動的 `<link>` タグ挿入でオンデマンド読み込み
-- カテゴリ: Sans-serif / Serif / Monospace / Display / Handwriting
-- **日本語フォント対応**: Noto Sans JP, Noto Serif JP, M PLUS Rounded 1c 等

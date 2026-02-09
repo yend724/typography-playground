@@ -25,7 +25,7 @@ pnpm vitest <path>   # 単一テストファイル実行
 
 詳細は `docs/architecture.md` を参照。要点：
 
-**データ駆動設計**: 各 CSS プロパティは `shared/data/properties/` 内の `PropertyDefinition` オブジェクト。`PropertyControl` が `controlType`（slider, select, color, text, font-family, multi-value, axis-slider-group）に応じて適切な入力コンポーネントにディスパッチする。
+**データ駆動設計**: 各 CSS プロパティは `shared/data/properties/` 内の `PropertyDefinition` オブジェクト。`PropertyControl` が `controlType`（slider, select, color, text, multi-value, axis-slider-group）に応じて適切な入力コンポーネントにディスパッチする。
 
 **データフロー**: `useTypographyState`（useReducer + Context）が全プロパティ値を `Record<string, string | undefined>` として保持。コントロールは `setProperty()` で書き込み、プレビューは `appliedStyles`（算出された `React.CSSProperties`）を読み取り、`useCSSOutput` が CSS 文字列を生成する。
 

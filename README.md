@@ -2,18 +2,19 @@
 
 CSS タイポグラフィプロパティをリアルタイムプレビューで対話的に探索できるブラウザベースツール。
 
+![Typography Playground](public/ogp.png)
+
 **Demo**: https://yend724.github.io/typography-playground/
 
 ## 機能
 
-- **38 種類の CSS プロパティ** を CSS 仕様ベースの 4 カテゴリに分類してインタラクティブに操作
-  - CSS Fonts (font-size, font-weight, font-variation-settings など 11 種)
+- **40 種類の CSS プロパティ** を CSS 仕様ベースの 4 カテゴリに分類してインタラクティブに操作
+  - CSS Fonts (font-family, font-size, font-weight, font-variation-settings など 12 種)
   - CSS Text (color, line-height, text-align, text-transform など 17 種)
   - CSS Text Decoration (text-decoration-line, text-shadow など 7 種)
   - CSS Writing Modes (writing-mode, direction など 3 種)
 - **リアルタイムプレビュー** でスタイル変更を即座に確認
 - **CSS 出力** で変更したプロパティのコードをワンクリックコピー
-- **Google Fonts 連携** で 80 種類のフォント (日本語フォント含む) を選択可能
 - **レスポンシブ対応** でモバイルでもタブ切り替えで操作可能
 
 ## 技術スタック

@@ -33,4 +33,22 @@ describe("buildAppliedStyles", () => {
     const result = buildAppliedStyles({});
     expect(result).toEqual({});
   });
+
+  it("url() を含む値はサニタイズされる", () => {
+    const state = { "font-family": "url(https://evil.com)" };
+    const result = buildAppliedStyles(state);
+    expect(result).toEqual({ fontFamily: "" });
+  });
+
+  it("expression() を含む値はサニタイズされる", () => {
+    const state = { "color": "expression(alert(1))" };
+    const result = buildAppliedStyles(state);
+    expect(result).toEqual({ color: "" });
+  });
+
+  it("通常の値はサニタイズの影響を受けない", () => {
+    const state = { "font-family": "'Noto Sans JP', sans-serif" };
+    const result = buildAppliedStyles(state);
+    expect(result).toEqual({ fontFamily: "'Noto Sans JP', sans-serif" });
+  });
 });
